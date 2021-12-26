@@ -1,0 +1,14 @@
+https://www.youtube.com/watch?v=Sag-Hz9jJNg - reference video
+
+async annonymous function used. Most functions used with pupeeteer return a promise.
+
+When web scraping, you are waiting for the bot to wait for something to happen before taking some kind of action. Async allows the bot to have this behaviour.Simulates real life behaviour.
+
+await keyword used so the bot has steps/recipe of what to do. First it opens the browser, when the browser finishes loading, then move onto next step. Allows the bot process to be step-wise.
+
+1. const browser - Have to tell bot to initialise a browser. headless: false means we can see it happening.
+   headless: true means I cant see it happening
+2. const page - this function will open a new tab in the browser
+3. await page.goto("https://en.wikipedia.org/wiki/Thierry_Henry"); - after opening new tab, go to this link
+4. const careerSummary = await page.evaluate(() => {
+   const infobox = document.querySelector("infobox vcard") --- The whole wiki page is evaluated by Pupeeteer and then a variable that contains the infobox vcard is created to store that information from the document query
