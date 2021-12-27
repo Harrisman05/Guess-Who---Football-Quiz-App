@@ -18,10 +18,13 @@ const colinKazimRichards = "Colin_Kazim-Richards";
 
 const puppeteer = require("puppeteer"); // initialise puppeteer library
 
+
+// if (1 == 2) { // eventListener here for button press
+
 (async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.goto("https://en.wikipedia.org/wiki/" + xavi);
+    await page.goto("https://en.wikipedia.org/wiki/" + thierryHenry);
 
     const careerSummary = await page.evaluate( () =>
     document.querySelector('table').innerText);
@@ -42,7 +45,7 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
         summaryArr.pop() // removes the last element in the array
  } 
 
-    console.log(summaryArr)
+    // console.log(summaryArr);
 
     let youthPeriod = [];
     let seniorPeriod = [];
@@ -81,15 +84,13 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
     // console.log(nationalPeriod);
     // console.log(managementPeriod);
 
-    await browser.close();
-
     ///////////////////////////////////// Youth Career ///////////////////////////////////////////////////////////
 
     let youthYears = [];
     let youthClubs = [];
 
     youthPeriod.shift(); // removes "youth" string, which is first item in array
-    for (i =0; i < youthPeriod.length; i++) {
+    for (let i =0; i < youthPeriod.length; i++) {
         let splitArray = youthPeriod[i].split(" "); // splits youthPeriod array into groups of strings
         let dateItem = splitArray.shift();          // removes the first string (date) from the group of strings
         youthYears.push(dateItem);                  // pushes date to its own array
@@ -115,7 +116,7 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
 
     seniorPeriod.splice(0,2); // removes "Senior career*" and "Years Team Apps (Gls)" from list
 
-    for (i =0; i < seniorPeriod.length; i++) {
+    for (let i = 0; i < seniorPeriod.length; i++) {
         let splitArray = seniorPeriod[i].split(" ");
         let dateItem = splitArray.shift();
         seniorYears.push(dateItem);
@@ -148,7 +149,7 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
         let nationalApps = [];
         let nationalGoals = [];
         
-        for (i =0; i < nationalPeriod.length; i++) {
+        for (let i = 0; i < nationalPeriod.length; i++) {
             let splitArray = nationalPeriod[i].split(" ");
             let dateItem = splitArray.shift();
             nationalYears.push(dateItem);
@@ -176,7 +177,7 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
         let managementYears = [];
         let managementClubs = [];
 
-        for (i =0; i < managementPeriod.length; i++) {
+        for (let i = 0; i < managementPeriod.length; i++) {
             let splitArray = managementPeriod[i].split(" "); // splits managementPeriod array into groups of strings
             let dateItem = splitArray.shift();          // removes the first string (date) from the group of strings
             managementYears.push(dateItem);                  // pushes date to its own array
@@ -185,14 +186,37 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
     
         }
     
-        console.log(managementClubs); 
-        console.log(managementYears);
-        console.log(managementPeriod);
+        // console.log(managementClubs); 
+        // console.log(managementYears);
+        // console.log(managementPeriod);
     
     }
 
-    
+    ///////////////////////////////////////////// generate html ///
+
+    const youthTableHTML = await page.evaluate(() => {
+        document.getElementById("youthTableHTML")
+    });
+
+    await browser.close();
+
+
+    console.log(youthYears);
+    console.log(youthClubs);
+
+    youthTable = "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
+
+    for (let i = 0; i < youthYears.length; i++) {
+        youthTable += "<tr><td>"  + youthYears[i] + "</td><td>" + youthClubs[i] + '</td></tr>';
+    }
+
+    youthTable += "</tbody></table>";
+
+    // Display data in HTML table
+
+    youthTableHTML.innerHTML = youthTable;
 
 
 })();
+
 
