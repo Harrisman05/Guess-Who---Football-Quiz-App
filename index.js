@@ -14,7 +14,8 @@ const androsTownsend = "Andros_Townsend";
 const jonTaylor = "Jon_Taylor";
 
 const tonyHibbert = "Tony_Hibbert";
-const colinKazimRichards = "Colin_Kazim-Richards";
+const colinKazimRichards = "Colin Kazim Richards";
+const ahmedElmohamady = "Ahmed_Elmohamady";
 
 const puppeteer = require("puppeteer"); // initialise puppeteer library
 
@@ -24,7 +25,7 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
 (async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-    await page.goto("https://en.wikipedia.org/wiki/" + thierryHenry);
+    await page.goto("https://en.wikipedia.org/wiki/" + colinKazimRichards);
 
     const careerSummary = await page.evaluate( () =>
     document.querySelector('table').innerText);
@@ -45,7 +46,7 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
         summaryArr.pop() // removes the last element in the array
  } 
 
-    // console.log(summaryArr);
+    console.log(summaryArr);
 
     let youthPeriod = [];
     let seniorPeriod = [];
@@ -192,31 +193,22 @@ const puppeteer = require("puppeteer"); // initialise puppeteer library
     
     }
 
-    ///////////////////////////////////////////// generate html ///
-
-    const youthTableHTML = await page.evaluate(() => {
-        document.getElementById("youthTableHTML")
-    });
 
     await browser.close();
 
-
-    console.log(youthYears);
-    console.log(youthClubs);
-
-    youthTable = "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
-
-    for (let i = 0; i < youthYears.length; i++) {
-        youthTable += "<tr><td>"  + youthYears[i] + "</td><td>" + youthClubs[i] + '</td></tr>';
-    }
-
-    youthTable += "</tbody></table>";
-
-    // Display data in HTML table
-
-    youthTableHTML.innerHTML = youthTable;
-
-
 })();
 
+    ///////////////////////////////////////////// generate html //////////////////////////////////////////////////
 
+
+    // youthTable = "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
+
+    // for (let i = 0; i < youthYears.length; i++) {
+    //     youthTable += "<tr><td>"  + youthYears[i] + "</td><td>" + youthClubs[i] + '</td></tr>';
+    // }
+
+    // youthTable += "</tbody></table>";
+
+    // // Display data in HTML table
+
+    // youthTableHTML.innerHTML = youthTable;
