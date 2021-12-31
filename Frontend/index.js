@@ -1,32 +1,67 @@
+// npm init
+// npm install
+
 "use strict";
 
 const fs = require("fs");
 
-// npm init
-// npm install
-
-let player = "Gareth Barry";
+//////////////////////////////////////// Read File to player database array
 
 const generateArrayFromCSV = function () {
-  let summaryArray = fs.readFileSync(`summaries/${player}.txt`, "utf-8"); // read file and convert from CSV to string
+  let playerDatabaseArray = fs.readFileSync("playersDatabase.txt", "utf8"); // generate long string of players from csv file
 
-  summaryArray = summaryArray.split("\n"); // split strings at the spaces and convert into arrays
+  playerDatabaseArray = playerDatabaseArray.split("\n");
 
-  for (let i = 0; i < summaryArray.length; i++) {
-    summaryArray[i] = summaryArray[i].replace(/\t/g, " "); // this removes all the random /t characters within the strings
+  for (let i = 0; i < playerDatabaseArray.length; i++) {
+    playerDatabaseArray[i] = playerDatabaseArray[i].replace(/\r/g, ""); // this removes all the random /r characters within the strings
   }
 
-  summaryArray = summaryArray.filter(Boolean); // this filters out any empty strings, as empty strings are falsy
+  playerDatabaseArray = playerDatabaseArray.filter(Boolean); // remove all empty strings
 
-  return summaryArray;
+  return playerDatabaseArray;
 };
 
-let summaryArray = generateArrayFromCSV();
+let playerDatabaseArray = generateArrayFromCSV();
+console.log(playerDatabaseArray);
 
-console.log(summaryArray);
+//////////////////////////////////////////// Random Generator on Player database array to obtain chosen random player
 
-/////////////////////////////////////////////
+const chooseRandomPlayer = function (playerDatabaseArray) {
+  let randomNum = Math.floor(Math.random() * playerDatabaseArray.length);
+  console.log(randomNum);
+  return playerDatabaseArray[randomNum];
+};
 
+let random_player = chooseRandomPlayer(playerDatabaseArray);
+console.log(random_player);
+
+/////////////////////////////////////////// Generate chosen player summary
+
+const generateChosenPlayerSummary = function (chosenPlayer) {
+  let chosenPlayerSummary = fs.readFileSync(
+    `summaries/${chosenPlayer}.txt`,
+    "utf8"
+  );
+  console.log(chosenPlayerSummary);
+  chosenPlayerSummary = chosenPlayerSummary.split("\n");
+  console.log(chosenPlayerSummary);
+  while (
+    chosenPlayerSummary[chosenPlayerSummary.length - 1][0].match(/\d/g) === null
+  ) {
+    // this remove the Senior club appearances and Honours, as the first string of these array    items don't contain a number
+    // removes the last element in the array
+    chosenPlayerSummary.pop();
+  }
+  console.log(chosenPlayerSummary);
+  chosenPlayerSummary = chosenPlayerSummary.filter(Boolean);
+  console.log(chosenPlayerSummary);
+  return chosenPlayerSummary;
+};
+
+let summaryArray = generateChosenPlayerSummary("Roy Keane");
+
+///////////////////////////////////////////// Generate personal info
+// TODO add regular expression to remove numbers in square brackets from strings
 let personalInfo = [];
 
 const generatePersonalInfo = function (summaryArray) {
@@ -36,91 +71,96 @@ const generatePersonalInfo = function (summaryArray) {
   }
 };
 
-generatePersonalInfo(summaryArray); // this removes all the club information
+generatePersonalInfo(summaryArray);
 
-console.log(personalInfo);
-
-/////////////////////////////////////////////////////
-
-const removeSpaces = function (summaryArray) {
-  while (summaryArray[summaryArray.length - 1][0].match(/\d/g) === null) {
-    summaryArray.pop();
-  }
-};
-
-removeSpaces(summaryArray); // TODO continue writing functions from this point
-// this remove the Senior club appearances and Honours, as the first string of these array    items don't contain a number
-// removes the last element in the array
-
-/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////// generate youthPeriod
 
 let youthPeriod = [];
 let seniorPeriod = [];
 let nationalPeriod = [];
 let managementPeriod = [];
 
-if (summaryArray[0] === "Youth career") {
-  while (summaryArray[0] !== "Senior career*") {
-    // filter the first section (youth career) into separate array
-    let item = summaryArray.shift();
-    youthPeriod.push(item);
+const generateYouthPeriod = function (summaryArray) {
+  if (summaryArray[0] === "Youth career") {
+    while (summaryArray[0] !== "Senior career*") {
+      // filter the first section (youth career) into separate array
+      let item = summaryArray.shift();
+      youthPeriod.push(item);
+    }
   }
-}
+};
 
-///////////////////////////
+generateYouthPeriod(summaryArray);
 
-if (
-  summaryArray[0] === "Senior career*" &&
-  (summaryArray.includes("National team‡") ||
-    summaryArray.includes("National team"))
-) {
-  while (summaryArray[0][0] !== "N") {
-    let item = summaryArray.shift(); // filter the second section (senior career) into separate array
-    seniorPeriod.push(item);
+////////////////////////////////////////////////////// generate SeniorPeriod
+const generateSeniorPeriod = function (summaryArray) {
+  if (
+    summaryArray[0] === "Senior career*" &&
+    (summaryArray.includes("National team‡") ||
+      summaryArray.includes("National team"))
+  ) {
+    while (summaryArray[0][0] !== "N") {
+      let item = summaryArray.shift(); // filter the second section (senior career) into separate array
+      seniorPeriod.push(item);
+    }
+  } else {
+    seniorPeriod = summaryArray;
   }
-} else {
-  seniorPeriod = summaryArray;
-}
+};
 
-///////////////
+generateSeniorPeriod(summaryArray);
 
-if (summaryArray[0][0] === "N" && summaryArray.includes("Teams managed")) {
-  while (summaryArray[0][0] !== "T") {
-    // filter the national career into separate array if they have a management career as well
-    let item = summaryArray.shift();
-    nationalPeriod.push(item);
+////////////////////////////////////////////////////// generate National Period (if applicable)
+
+const generateNationalPeriod = function (summaryArray) {
+  if (summaryArray[0][0] === "N" && summaryArray.includes("Teams managed")) {
+    while (summaryArray[0][0] !== "T") {
+      // filter the national career into separate array if they have a management career as well
+      let item = summaryArray.shift();
+      nationalPeriod.push(item);
+    }
+    managementPeriod = summaryArray; // if they have a management career, the remainder of the summary array will become the management career
+  } else if (
+    summaryArray.includes("National team‡") ||
+    summaryArray.includes("National team")
+  ) {
+    // make sure non-national and manager types don't get remainder assigned
+    nationalPeriod = summaryArray; // if they have a national career and no management career, then the remainder of the summary array will be their national career
   }
-  managementPeriod = summaryArray; // if they have a management career, the remainder of the summary array will become the management career
-} else if (
-  summaryArray.includes("National team‡") ||
-  summaryArray.includes("National team")
-) {
-  // make sure non-national and manager types don't get remainder assigned
-  nationalPeriod = summaryArray; // if they have a national career and no management career, then the remainder of the summary array will be their national career
-}
+};
 
-console.log(summaryArray);
+generateNationalPeriod(summaryArray);
+
+////////////////////////////////////////// log all periods to check they work
+
+console.log(personalInfo);
 console.log(youthPeriod);
 console.log(seniorPeriod);
 console.log(nationalPeriod);
 console.log(managementPeriod);
 
-///////////////////////////////////// Youth Career ///////////////////////////////////////////////////////////
+///////////////////////////////////// Create Youth Career specfic arrays for use in html ///////////////////////////////////////////////////////////
 
 let youthYears = [];
 let youthClubs = [];
 
-youthPeriod.shift(); // removes "youth" string, which is first item in array
-for (let i = 0; i < youthPeriod.length; i++) {
-  let splitArray = youthPeriod[i].split(" "); // splits youthPeriod array into groups of strings
-  let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
-  youthYears.push(dateItem); // pushes date to its own array
-  let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
-  youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
-}
+const generateYouthHTMLarrays = function (youthPeriod) {
+  youthPeriod.shift(); // removes "youth" string, which is first item in array
+  for (let i = 0; i < youthPeriod.length; i++) {
+    let splitArray = youthPeriod[i].split(" "); // splits youthPeriod array into groups of strings
+    let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
+    youthYears.push(dateItem); // pushes date to its own array
+    let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
+    youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
+  }
+};
 
-console.log(youthClubs); // TODO // could do, could use regular expression to remove [] and 123 characters from robbie savage youth clubs
+generateYouthHTMLarrays(youthPeriod);
+
+// TODO // could do, could use regular expression to remove [] and 123 characters from robbie savage youth clubs
+
 console.log(youthYears);
+console.log(youthClubs);
 console.log(youthPeriod);
 
 //   //////////////////////////////////// Senior Career ///////////////////////////////////////////////////////////
@@ -130,24 +170,28 @@ let seniorClubs = [];
 let seniorApps = [];
 let seniorGoals = [];
 
-if (seniorPeriod[seniorPeriod.length - 1][0].match(/\d/g) === null) {
-  // removes "Total numApps numGoals" from end of array if applicable
-  seniorPeriod.pop();
-}
+const generateSeniorHTMLarrays = function (seniorPeriod) {
+  if (seniorPeriod[seniorPeriod.length - 1][0].match(/\d/g) === null) {
+    // removes "Total numApps numGoals" from end of array if applicable
+    seniorPeriod.pop();
+  }
 
-seniorPeriod.splice(0, 2); // removes "Senior career*" and "Years Team Apps (Gls)" from list
+  seniorPeriod.splice(0, 2); // removes "Senior career*" and "Years Team Apps (Gls)" from list
 
-for (let i = 0; i < seniorPeriod.length; i++) {
-  let splitArray = seniorPeriod[i].split(" ");
-  let dateItem = splitArray.shift();
-  seniorYears.push(dateItem);
-  let goalsItem = splitArray.pop();
-  seniorGoals.push(goalsItem);
-  let appsItem = splitArray.pop();
-  seniorApps.push(appsItem);
-  let rejoinClubs = splitArray.join(" ");
-  seniorClubs.push(rejoinClubs);
-}
+  for (let i = 0; i < seniorPeriod.length; i++) {
+    let splitArray = seniorPeriod[i].split(" ");
+    let dateItem = splitArray.shift();
+    seniorYears.push(dateItem);
+    let goalsItem = splitArray.pop();
+    seniorGoals.push(goalsItem);
+    let appsItem = splitArray.pop();
+    seniorApps.push(appsItem);
+    let rejoinClubs = splitArray.join(" ");
+    seniorClubs.push(rejoinClubs);
+  }
+};
+
+generateSeniorHTMLarrays(seniorPeriod);
 
 console.log(seniorYears);
 console.log(seniorClubs);
@@ -166,21 +210,25 @@ let nationalGroups = [];
 let nationalApps = [];
 let nationalGoals = [];
 
-if (Boolean(nationalPeriod.length)) {
-  nationalPeriod.splice(0, 1); // this removes first item in array called "national team" so that just data is present
+const generateNationalHTMLarrays = function (nationalPeriod) {
+  if (Boolean(nationalPeriod.length)) {
+    nationalPeriod.splice(0, 1); // this removes first item in array called "national team" so that just data is present
 
-  for (let i = 0; i < nationalPeriod.length; i++) {
-    let splitArray = nationalPeriod[i].split(" ");
-    let dateItem = splitArray.shift();
-    nationalYears.push(dateItem);
-    let goalsItem = splitArray.pop();
-    nationalGoals.push(goalsItem);
-    let appsItem = splitArray.pop();
-    nationalApps.push(appsItem);
-    let rejoinGroups = splitArray.join(" ");
-    nationalGroups.push(rejoinGroups);
+    for (let i = 0; i < nationalPeriod.length; i++) {
+      let splitArray = nationalPeriod[i].split(" ");
+      let dateItem = splitArray.shift();
+      nationalYears.push(dateItem);
+      let goalsItem = splitArray.pop();
+      nationalGoals.push(goalsItem);
+      let appsItem = splitArray.pop();
+      nationalApps.push(appsItem);
+      let rejoinGroups = splitArray.join(" ");
+      nationalGroups.push(rejoinGroups);
+    }
   }
-}
+};
+
+generateNationalHTMLarrays(nationalPeriod);
 
 console.log(nationalYears);
 console.log(nationalGroups);
@@ -192,32 +240,36 @@ console.log(nationalGoals);
 let managementYears = [];
 let managementClubs = [];
 
-if (Boolean(managementPeriod.length)) {
-  managementPeriod.shift(); // this removes first item in array called "national team" so that just data is present
+const generateManagementHTMLarrays = function (managementPeriod) {
+  if (Boolean(managementPeriod.length)) {
+    managementPeriod.shift(); // this removes first item in array called "national team" so that just data is present
 
-  for (let i = 0; i < managementPeriod.length; i++) {
-    let splitArray = managementPeriod[i].split(" "); // splits managementPeriod array into groups of strings
-    let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
-    managementYears.push(dateItem); // pushes date to its own array
-    let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
-    managementClubs.push(rejoinClubs); // pushes clubs onto managementClubs array
+    for (let i = 0; i < managementPeriod.length; i++) {
+      let splitArray = managementPeriod[i].split(" "); // splits managementPeriod array into groups of strings
+      let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
+      managementYears.push(dateItem); // pushes date to its own array
+      let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
+      managementClubs.push(rejoinClubs); // pushes clubs onto managementClubs array
+    }
   }
-}
+};
+
+generateManagementHTMLarrays(managementPeriod);
 
 console.log(managementClubs);
 console.log(managementYears);
 console.log(managementPeriod);
 
-// ///////////////////////////////////////////// generate html //////////////////////////////////////////////////
+// // ///////////////////////////////////////////// generate html //////////////////////////////////////////////////
 
-// // youthTable = "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
+// // // youthTable = "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
 
-// // for (let i = 0; i < youthYears.length; i++) {
-// //     youthTable += "<tr><td>"  + youthYears[i] + "</td><td>" + youthClubs[i] + '</td></tr>';
-// // }
+// // // for (let i = 0; i < youthYears.length; i++) {
+// // //     youthTable += "<tr><td>"  + youthYears[i] + "</td><td>" + youthClubs[i] + '</td></tr>';
+// // // }
 
-// // youthTable += "</tbody></table>";
+// // // youthTable += "</tbody></table>";
 
-// // // Display data in HTML table
+// // // // Display data in HTML table
 
-// // youthTableHTML.innerHTML = youthTable;
+// // // youthTableHTML.innerHTML = youthTable;
