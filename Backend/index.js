@@ -20,34 +20,53 @@ const tonyHibbert = "Tony_Hibbert";
 const colinKazimRichards = "Colin Kazim Richards";
 const ahmedElmohamady = "Ahmed_Elmohamady";
 
-(async () => {
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
-  await page.goto("https://en.wikipedia.org/wiki/" + thierryHenry);
+////////////////////////////////////////////////////////
 
-  const careerSummary = await page.evaluate(
-    () => document.querySelector("table").innerText
-  );
+let playerDatabase = fs.readFileSync("playersDatabase.txt", "utf8");
 
-  let summaryArr = careerSummary.split("\n"); // this splits the very long careerSummary string into individual elements in an array
+playerDatabase = playerDatabase.split("\n"); // split long string in array at the new line points
 
-  for (let i = 0; i < summaryArr.length; i++) {
-    summaryArr[i] = summaryArr[i].replace(/\t/g, " "); // this removes all the random /t characters within the strings
-  }
+for (let i = 0; i < playerDatabase.length; i++) {
+  playerDatabase[i] = playerDatabase[i].replace(/\r/g, ""); // this removes all the random /r characters within the strings
+}
 
-  // let rejoinedSummaryArr = summaryArr.join("\n"); TODO check if this statement is actually needed, used in front-end processing
+playerDatabase = playerDatabase.filter(Boolean); // filter out empty strings
 
-  fs.appendFile(
-    `summaries/${thierryHenry}.txt`,
-    rejoinedSummaryArr,
-    function (err) {
-      if (err) throw err;
-      console.log("Saved");
+console.log(playerDatabase);
+
+//////////////////////////////////////////////////////
+
+for (let i = 0; i < playerDatabase.length; i++) {
+  (async () => {
+    for (let i = 0; i < 2; i++) {
+      const browser = await puppeteer.launch({ headless: false });
+      const page = await browser.newPage();
+      await page.goto("https://en.wikipedia.org/wiki/" + playerDatabase[i]);
+
+      const careerSummary = await page.evaluate(
+        () => document.querySelector("table").innerText
+      );
+
+      let summaryArr = careerSummary.split("\n"); // this splits the very long careerSummary string into individual elements in an array
+
+      for (let i = 0; i < summaryArr.length; i++) {
+        summaryArr[i] = summaryArr[i].replace(/\t/g, " "); // this removes all the random /t characters within the strings
+      }
+
+      let rejoinedSummaryArr = summaryArr.join("\n");
+      fs.appendFile(
+        `summaries/${playerDatabase[i]}.txt`,
+        rejoinedSummaryArr,
+        function (err) {
+          if (err) throw err;
+          console.log("Saved");
+        }
+      );
+
+      await browser.close();
     }
-  );
-
-  await browser.close();
-})();
+  })();
+}
 
 // while (summaryArr[0] !== "Youth career") {
 //     // this removes all the club information

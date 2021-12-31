@@ -5,8 +5,10 @@ const fs = require("fs");
 // npm init
 // npm install
 
+let player = "Gareth Barry";
+
 const generateArrayFromCSV = function () {
-  let summaryArray = fs.readFileSync("summaries/Thierry_Henry.txt", "utf-8"); // read file and convert from CSV to string
+  let summaryArray = fs.readFileSync(`summaries/${player}.txt`, "utf-8"); // read file and convert from CSV to string
 
   summaryArray = summaryArray.split("\n"); // split strings at the spaces and convert into arrays
 
