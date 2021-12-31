@@ -35,7 +35,7 @@ const ahmedElmohamady = "Ahmed_Elmohamady";
     summaryArr[i] = summaryArr[i].replace(/\t/g, " "); // this removes all the random /t characters within the strings
   }
 
-  let rejoinedSummaryArr = summaryArr.join("\n");
+  // let rejoinedSummaryArr = summaryArr.join("\n"); TODO check if this statement is actually needed, used in front-end processing
 
   fs.appendFile(
     `summaries/${thierryHenry}.txt`,
@@ -49,12 +49,12 @@ const ahmedElmohamady = "Ahmed_Elmohamady";
   await browser.close();
 })();
 
-while (summaryArr[0] !== "Youth career") {
-  // this removes all the club information
-  summaryArr.splice(0, 1);
-}
+// while (summaryArr[0] !== "Youth career") {
+//     // this removes all the club information
+//     summaryArr.splice(0, 1);
+//   }
 
-summaryArr = summaryArr.filter(Boolean); // this filters out any empty strings, as empty strings are falsy
+//   summaryArr = summaryArr.filter(Boolean); // this filters out any empty strings, as empty strings are falsy
 
 //   while (summaryArr[summaryArr.length - 1][0].match(/\d/g) === null) {
 //     // this remove the Senior club appearances and Honours, as the first string of these array    items don't contain a number
