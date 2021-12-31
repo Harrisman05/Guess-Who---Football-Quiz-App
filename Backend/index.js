@@ -4,22 +4,6 @@
 const puppeteer = require("puppeteer"); // initialise puppeteer library
 const fs = require("fs");
 
-const thierryHenry = "Thierry_Henry";
-const xavi = "Xavi";
-
-const jamieCarragher = "Jamie_Carragher";
-
-const robbieSavage = "Robbie_Savage";
-const arjenRobben = "Arjen_Robben";
-const cristianoRonaldo = "Cristiano_Ronaldo";
-const androsTownsend = "Andros_Townsend";
-
-const jonTaylor = "Jon_Taylor";
-
-const tonyHibbert = "Tony_Hibbert";
-const colinKazimRichards = "Colin Kazim Richards";
-const ahmedElmohamady = "Ahmed_Elmohamady";
-
 ////////////////////////////////////////////////////////
 
 let playerDatabase = fs.readFileSync("playersDatabase.txt", "utf8");
@@ -32,41 +16,51 @@ for (let i = 0; i < playerDatabase.length; i++) {
 
 playerDatabase = playerDatabase.filter(Boolean); // filter out empty strings
 
-console.log(playerDatabase);
-
 //////////////////////////////////////////////////////
 
-for (let i = 0; i < playerDatabase.length; i++) {
-  (async () => {
-    for (let i = 0; i < 2; i++) {
-      const browser = await puppeteer.launch({ headless: false });
-      const page = await browser.newPage();
-      await page.goto("https://en.wikipedia.org/wiki/" + playerDatabase[i]);
+// PATCHED David James[3], Danny Murphy[32], Luke Young[48], Paul Robinson[52], Ben Foster[62], Chris Perry[63], James Beattie [87], Kevin Campbell [93]
+// PATCHED Gary Kelly [95], Matthew Taylor [98], Paul Telfer [107], Peter Atherton[108], Ian Walker [117], James Morrison [119],
+// PATCHED Simon Davies [128]
+// PATCHED Graeme le Saux [91], Joe Hart [82], Nigel Winterburn [70] (wrong table selector selected in query) - wrong table reference
 
-      const careerSummary = await page.evaluate(
-        () => document.querySelector("table").innerText
-      );
+(async () => {
+  for (let i = 0; i < 1; i++) {
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    await page.goto(
+      "https://en.wikipedia.org/wiki/" +
+        playerDatabase[128] +
+        "_(footballer,_born_1979)"
+    );
 
-      let summaryArr = careerSummary.split("\n"); // this splits the very long careerSummary string into individual elements in an array
+    const careerSummary = await page.evaluate(
+      () =>
+        document.querySelector(
+          "#mw-content-text > div.mw-parser-output > table.infobox.vcard"
+        ).innerText
+    );
 
-      for (let i = 0; i < summaryArr.length; i++) {
-        summaryArr[i] = summaryArr[i].replace(/\t/g, " "); // this removes all the random /t characters within the strings
-      }
+    console.log(careerSummary);
 
-      let rejoinedSummaryArr = summaryArr.join("\n");
-      fs.appendFile(
-        `summaries/${playerDatabase[i]}.txt`,
-        rejoinedSummaryArr,
-        function (err) {
-          if (err) throw err;
-          console.log("Saved");
-        }
-      );
+    let summaryArr = careerSummary.split("\n"); // this splits the very long careerSummary string into individual elements in an array
 
-      await browser.close();
+    for (let i = 0; i < summaryArr.length; i++) {
+      summaryArr[i] = summaryArr[i].replace(/\t/g, " "); // this removes all the random /t characters within the strings
     }
-  })();
-}
+
+    let rejoinedSummaryArr = summaryArr.join("\n");
+    fs.appendFile(
+      `summariesDebugWikiNameError/${playerDatabase[128]}.txt`,
+      rejoinedSummaryArr,
+      function (err) {
+        if (err) throw err;
+        console.log("Saved");
+      }
+    );
+
+    await browser.close();
+  }
+})();
 
 // while (summaryArr[0] !== "Youth career") {
 //     // this removes all the club information
