@@ -1,0 +1,26 @@
+const player = `Rio Ferdinand
+Ferdinand in 2015
+
+Personal information
+Full name Rio Gavin Ferdinand[1]
+Date of birth 7 November 1978 (age 43)[2]
+Place of birth Camberwell, England
+Height 1.89 m (6 ft 2 in)[3]
+Position(s) Centre-back
+Youth career
+1992–1995 West Ham United
+Senior career*
+Years Team Apps (Gls)
+1995–2000 West Ham United 127 (2)
+1996–1997 → AFC Bournemouth (loan) 10 (0)
+2000–2002 Leeds United 54 (2)
+2002–2014 Manchester United 312 (7)
+2014–2015 Queens Park Rangers 11 (0)
+Total  514 (11)
+National team
+1996–1997 England U18 7 (0)
+1997–2000 England U21 5 (0)
+1997–2011 England 81 (3)
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

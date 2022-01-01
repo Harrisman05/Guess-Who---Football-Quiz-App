@@ -1,0 +1,35 @@
+const player = `Lee Bowyer
+Bowyer playing for Birmingham City in 2010
+
+Personal information
+Full name Lee David Bowyer[1]
+Date of birth 3 January 1977 (age 44)[2]
+Place of birth Canning Town, London, England
+Height 5 ft 9 in (1.75 m)[1]
+Position(s) Midfielder[2]
+Club information
+Current team Birmingham City (head coach)
+Youth career
+ Senrab
+ Charlton Athletic
+Senior career*
+Years Team Apps (Gls)
+1994–1996 Charlton Athletic 46 (8)
+1996–2003 Leeds United 203 (38)
+2003 West Ham United 10 (0)
+2003–2006 Newcastle United 79 (6)
+2006–2009 West Ham United 41 (4)
+2009 → Birmingham City (loan) 17 (1)
+2009–2011 Birmingham City 64 (9)
+2011–2012 Ipswich Town 29 (2)
+Total  489 (68)
+National team
+1994–1995 England U18 6 (0)
+1995–2000 England U21 13 (4)
+2002 England 1 (0)
+Teams managed
+2018–2021 Charlton Athletic
+2021– Birmingham City
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

@@ -1,0 +1,28 @@
+const player = `Ryan Shawcross
+Shawcross with Stoke City in 2015
+
+Personal information
+Full name Ryan James Shawcross[1]
+Date of birth 4 October 1987 (age 34)[2]
+Place of birth Chester, England
+Height 6 ft 3 in (1.91 m)[3]
+Position(s) Centre-back
+Club information
+Current team Inter Miami
+Number 17
+Youth career
+ Buckley Town
+2002–2006 Manchester United
+Senior career*
+Years Team Apps (Gls)
+2006–2008 Manchester United 0 (0)
+2007 → Royal Antwerp (loan) 22 (3)
+2007–2008 → Stoke City (loan) 26 (6)
+2008–2021 Stoke City 401 (22)
+2021– Inter Miami 12 (0)
+National team
+2008 England U21 2 (0)
+2012 England 1 (0)
+* Senior club appearances and goals counted for the domestic league only and correct as of 10:44, 22 September 2021 (UTC)`;
+
+export { player };

@@ -1,0 +1,36 @@
+const player = `James Milner
+Milner playing for Liverpool in 2021
+
+Personal information
+Full name James Philip Milner[1]
+Date of birth 4 January 1986 (age 35)[2]
+Place of birth Leeds, England
+Height 5 ft 9 in (1.75 m)[3]
+Position(s) Midfielder / Winger / Full-back
+Club information
+Current team Liverpool
+Number 7
+Youth career
+1996–2002 Leeds United
+Senior career*
+Years Team Apps (Gls)
+2002–2004 Leeds United 48 (5)
+2003 → Swindon Town (loan) 6 (2)
+2004–2008 Newcastle United 94 (6)
+2005–2006 → Aston Villa (loan) 27 (1)
+2008–2010 Aston Villa 73 (11)
+2010–2015 Manchester City 147 (13)
+2015– Liverpool 184 (19)
+National team
+2001–2002 England U16[4] 6 (5)
+2002–2003 England U17[4] 11 (8)
+2004 England U19[5] 1 (1)
+2003–2005 England U20[6] 6 (0)
+2004–2009 England U21[7] 46 (8)
+2009–2016 England 61 (1)
+
+Honours
+
+* Senior club appearances and goals counted for the domestic league only and correct as of 18:39, 12 December 2021 (UTC)`;
+
+export { player };

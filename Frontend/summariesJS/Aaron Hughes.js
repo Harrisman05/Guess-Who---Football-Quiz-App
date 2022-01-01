@@ -26,7 +26,6 @@ National team
  Northern Ireland U18 5 (1)
 1997–1998 Northern Ireland B 2 (0)
 1998–2018 Northern Ireland 112 (1)
-* Senior club appearances and goals counted for the domestic league only
-`;
+* Senior club appearances and goals counted for the domestic league only`;
 
 export { player };

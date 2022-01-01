@@ -1,0 +1,34 @@
+const player = `David de Gea
+De Gea with Spain in 2017
+
+Personal information
+Full name David de Gea Quintana[1]
+Date of birth 7 November 1990 (age 31)[2]
+Place of birth Madrid, Spain
+Height 1.92 m (6 ft 4 in)[3]
+Position(s) Goalkeeper
+Club information
+Current team Manchester United
+Number 1
+Youth career
+2003–2008 Atlético Madrid
+Senior career*
+Years Team Apps (Gls)
+2008–2009 Atlético Madrid B 35 (0)
+2009–2011 Atlético Madrid 57 (0)
+2011– Manchester United 357 (0)
+National team‡
+2004 Spain U15 12 (0)
+2007 Spain U17 15 (0)
+2007–2009 Spain U19 15 (0)
+2009 Spain U20 1 (0)
+2009–2013 Spain U21 27 (0)
+2012 Spain U23 5 (0)
+2014– Spain 45 (0)
+
+Honours
+
+* Senior club appearances and goals counted for the domestic league only and correct as of 22:46, 30 December 2021 (UTC)
+‡ National team caps and goals correct as of 22:21, 13 October 2020 (UTC)`;
+
+export { player };

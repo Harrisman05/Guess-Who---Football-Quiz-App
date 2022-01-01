@@ -1,0 +1,31 @@
+const player = `Peter Schmeichel
+Schmeichel in 2012
+
+Personal information
+Full name Peter Bolesław Schmeichel
+Date of birth 18 November 1963 (age 58)
+Place of birth Gladsaxe, Denmark
+Height 1.91 m (6 ft 3 in)[1]
+Position(s) Goalkeeper
+Youth career
+1972–1975 Høje-Gladsaxe
+1975–1979 Hero
+1979–1981 Gladsaxe-Hero
+Senior career*
+Years Team Apps (Gls)
+1981–1984 Gladsaxe-Hero 46 (0)
+1984–1987 Hvidovre 78 (6)
+1987–1991 Brøndby 119 (2)
+1991–1999 Manchester United 292 (0)
+1999–2001 Sporting CP 55 (0)
+2001–2002 Aston Villa 29 (1)
+2002–2003 Manchester City 29 (0)
+Total  648 (9)
+National team
+1987–2001 Denmark 129 (1)
+
+Honours
+
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

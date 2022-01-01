@@ -1,0 +1,30 @@
+const player = `David Seaman
+MBE
+Seaman in 2012
+
+Personal information
+Full name David Andrew Seaman[1]
+Date of birth 19 September 1963 (age 58)[1]
+Place of birth Rotherham, England
+Height 6 ft 4 in (1.93 m)[2][3]
+Position(s) Goalkeeper
+Club information
+Current team Arsenal (goalkeeping coach)
+Youth career
+1981–1982 Leeds United
+Senior career*
+Years Team Apps (Gls)
+1981–1982 Leeds United 0 (0)
+1982–1984 Peterborough United 91 (0)
+1984–1986 Birmingham City 75 (0)
+1986–1990 Queens Park Rangers 141 (0)
+1990–2003 Arsenal 405 (0)
+2003–2004 Manchester City 19 (0)
+Total  731 (0)
+National team
+1984–1986 England U21 10 (0)
+1987–1992 England B 6 (0)
+1988–2002 England 75 (0)
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

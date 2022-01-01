@@ -1,0 +1,28 @@
+const player = `Richard Dunne
+Dunne playing for the Republic of Ireland in 2013.
+
+Personal information
+Full name Richard Patrick Dunne[1]
+Date of birth 21 September 1979 (age 42)[2]
+Place of birth Tallaght, Dublin, Ireland
+Height 1.88 m (6 ft 2 in)[2]
+Position(s) Centre back
+Youth career
+–1994 Home Farm
+1994–1996 Everton
+Senior career*
+Years Team Apps (Gls)
+1996–2000 Everton 60 (0)
+2000–2009 Manchester City 296 (7)
+2009–2013 Aston Villa 95 (4)
+2013–2015 Queens Park Rangers 64 (1)
+Total  515 (12)
+National team
+1997–1999 Republic of Ireland B 2 (1)
+2000–2013 Republic of Ireland 80 (8)
+
+Honours
+
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

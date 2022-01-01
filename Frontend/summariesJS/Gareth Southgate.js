@@ -1,0 +1,33 @@
+const player = `Gareth Southgate
+OBE
+Southgate managing England at the 2018 FIFA World Cup
+
+Personal information
+Full name Gareth Southgate[1]
+Date of birth 3 September 1970 (age 51)[2]
+Place of birth Watford, England
+Height 6 ft 0 in (1.83 m)[3]
+Position(s) Defender, midfielder
+Club information
+Current team England (manager)
+Youth career
+ Southampton
+ Crystal Palace
+Senior career*
+Years Team Apps (Gls)
+1988–1995 Crystal Palace 152 (15)
+1995–2001 Aston Villa 191 (7)
+2001–2006 Middlesbrough 160 (4)
+Total  503 (26)
+National team
+1995–2004 England 57 (2)
+Teams managed
+2006–2009 Middlesbrough
+2013–2016 England U21
+2016– England
+
+Honours
+
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

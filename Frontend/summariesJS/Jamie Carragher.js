@@ -1,0 +1,21 @@
+const player = `Jamie Carragher
+Carragher in 2012
+
+Personal information
+Full name James Lee Duncan Carragher[1]
+Date of birth 28 January 1978 (age 43)[2]
+Place of birth Bootle, Merseyside, England
+Height 6 ft 1 in (1.85 m)[3]
+Position(s) Defender
+Youth career
+1988–1996 Liverpool
+Senior career*
+Years Team Apps (Gls)
+1996–2013 Liverpool 508 (3)
+National team
+1996–1997 England U20 4 (1)
+1996–2000 England U21 27 (1)
+1999–2010 England 38 (0)
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

@@ -1,0 +1,25 @@
+const player = `Kenny Cunningham
+Warming up for Birmingham, April 2005
+
+Personal information
+Full name Kenneth Edward Cunningham[1]
+Date of birth 28 June 1971 (age 50)[1]
+Place of birth Dublin, Republic of Ireland
+Height 6 ft 0 in (1.83 m)[2]
+Position(s) Defender
+Youth career
+– Home Farm
+Senior career*
+Years Team Apps (Gls)
+1988–1989 Tolka Rovers  
+1989–1994 Millwall 136 (1)
+1994–2002 Wimbledon 250 (0)
+2002–2006 Birmingham City 134 (0)
+2006–2007 Sunderland 11 (0)
+Total  531 (1)
+National team
+1994 Republic of Ireland B 1 (0)
+1996–2005 Republic of Ireland 72 (0)
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

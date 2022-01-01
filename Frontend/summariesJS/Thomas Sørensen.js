@@ -1,0 +1,31 @@
+const player = `Thomas Sørensen
+Sørensen in 2007
+
+Personal information
+Full name Thomas Løvendahl Sørensen[1]
+Date of birth 12 June 1976 (age 45)[1]
+Place of birth Fredericia, Denmark
+Height 1.96 m (6 ft 5 in)[2]
+Position(s) Goalkeeper
+Youth career
+ Erritsø
+ Assens
+ OB
+Senior career*
+Years Team Apps (Gls)
+1993–1998 OB 0 (0)
+1995–1997 → Vejle (loan) 6 (0)
+1997–1998 → Svendborg (loan) 45 (0)
+1998–2003 Sunderland 171 (0)
+2003–2008 Aston Villa 139 (0)
+2008–2015 Stoke City 99 (0)
+2015–2017 Melbourne City 37 (0)
+Total  497 (0)
+National team
+1993–1995 Denmark U19 3 (0)
+1993–1997 Denmark U21 25 (0)
+1996 Denmark B 1 (0)
+1999–2012 Denmark 101 (0)
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

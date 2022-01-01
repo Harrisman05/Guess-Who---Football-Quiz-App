@@ -1,0 +1,31 @@
+const player = `Wayne Rooney
+Rooney with Manchester United in 2016
+
+Personal information
+Full name Wayne Mark Rooney[1]
+Date of birth 24 October 1985 (age 36)
+Place of birth Liverpool, England
+Height 5 ft 9 in (1.76 m)[2]
+Position(s) Forward, midfielder[3]
+Club information
+Current team Derby County (manager)
+Youth career
+1996–2002 Everton
+Senior career*
+Years Team Apps (Gls)
+2002–2004 Everton 67 (15)
+2004–2017 Manchester United 393 (183)
+2017–2018 Everton 31 (10)
+2018–2020 D.C. United 48 (23)
+2020–2021 Derby County 30 (6)
+Total  569 (237)
+National team
+2000–2001 England U15 4 (2)
+2001–2002 England U17 12 (7)
+2002–2003 England U19 1 (0)
+2003–2018 England 120 (53)
+Teams managed
+2020– Derby County
+* Senior club appearances and goals counted for the domestic league only`;
+
+export { player };

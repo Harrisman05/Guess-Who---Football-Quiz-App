@@ -5,8 +5,6 @@
 
 import { playerDatabase } from "./playersDatabase.js";
 
-console.log(typeof playerDatabase);
-
 //////////////////////////////////////// Read File to player database array
 
 const generatePlayerDatabaseArray = function (playerDatabase) {
@@ -17,13 +15,11 @@ const generatePlayerDatabaseArray = function (playerDatabase) {
   }
 
   playerDatabaseArray = playerDatabaseArray.filter(Boolean); // remove all empty strings
-  console.log(playerDatabaseArray);
+
   return playerDatabaseArray;
 };
 
 let playerDatabaseArray = generatePlayerDatabaseArray(playerDatabase);
-
-console.log(playerDatabaseArray);
 
 //////////////////////////////////////////// Random Generator on Player database array to obtain chosen random player
 
@@ -37,7 +33,7 @@ let random_player = chooseRandomPlayer(playerDatabaseArray);
 
 console.log(random_player);
 
-random_player = "Aaron Hughes";
+random_player = "Luke Young"; // Luke Young, Ugo Ehiogu, Sylvain Distin
 
 import(`./summariesJS/${random_player}.js`).then((player) => {
   ///////////////////////////////////////// Generate chosen player summary
@@ -65,15 +61,21 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
   let personalInfo = [];
 
   const generatePersonalInfo = function (summaryArray) {
-    while (summaryArray[0] !== "Youth career") {
+    while (
+      summaryArray[0] !== "Youth career" &&
+      summaryArray[0] !== "Senior career*"
+    ) {
       let infoItem = summaryArray.splice(0, 1).toString();
       personalInfo.push(infoItem);
+      console.log(personalInfo);
     }
   };
 
   generatePersonalInfo(summaryArray);
 
   /////////////////////////////////////////////////////// generate youthPeriod
+
+  console.log("made it to youth period generation");
 
   let youthPeriod = [];
   let seniorPeriod = [];
@@ -90,6 +92,8 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
     }
   };
 
+  console.log(youthPeriod);
+  console.log(personalInfo);
   generateYouthPeriod(summaryArray);
 
   ////////////////////////////////////////////////////// generate SeniorPeriod
