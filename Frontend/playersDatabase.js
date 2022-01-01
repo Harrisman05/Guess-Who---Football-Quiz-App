@@ -1,4 +1,4 @@
-Gareth Barry
+const playerDatabase = `Gareth Barry
 Ryan Giggs
 Frank Lampard
 David James
@@ -131,4 +131,6 @@ Pablo Zabaleta
 Phil Bardsley
 Nolberto Solano
 Garry Flitcroft
-Gavin McCann
+Gavin McCann`;
+
+export { playerDatabase };
