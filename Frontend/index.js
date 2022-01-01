@@ -33,7 +33,7 @@ let random_player = chooseRandomPlayer(playerDatabaseArray);
 
 console.log(random_player);
 
-random_player = "Luke Young"; // Luke Young, Ugo Ehiogu, Sylvain Distin
+// random_player = "Frank Lampard"; // Ugo Ehiogu, Luke Young, Ugo Ehiogu BUG, Sylvain Distin VIDEO
 
 import(`./summariesJS/${random_player}.js`).then((player) => {
   ///////////////////////////////////////// Generate chosen player summary
@@ -41,8 +41,6 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
   let chosenPlayerSummary = player.player;
 
   chosenPlayerSummary = chosenPlayerSummary.split("\n");
-
-  console.log(chosenPlayerSummary);
 
   chosenPlayerSummary = chosenPlayerSummary.filter(Boolean);
 
@@ -67,15 +65,13 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
     ) {
       let infoItem = summaryArray.splice(0, 1).toString();
       personalInfo.push(infoItem);
-      console.log(personalInfo);
+      // console.log(personalInfo);
     }
   };
 
   generatePersonalInfo(summaryArray);
 
-  /////////////////////////////////////////////////////// generate youthPeriod
-
-  console.log("made it to youth period generation");
+  /////////////////////////////////////////////////////// generate youthPerio
 
   let youthPeriod = [];
   let seniorPeriod = [];
@@ -88,12 +84,13 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
         // filter the first section (youth career) into separate array
         let item = summaryArray.shift();
         youthPeriod.push(item);
+        console.log(summaryArray);
       }
     }
   };
 
-  console.log(youthPeriod);
-  console.log(personalInfo);
+  // console.log(youthPeriod);
+  // console.log(personalInfo);
   generateYouthPeriod(summaryArray);
 
   ////////////////////////////////////////////////////// generate SeniorPeriod
@@ -137,16 +134,18 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
 
   ////////////////////////////////////////// log all periods to check they work
 
-  console.log(personalInfo);
-  console.log(youthPeriod);
-  console.log(seniorPeriod);
-  console.log(nationalPeriod);
-  console.log(managementPeriod);
+  // console.log(personalInfo);
+  // console.log(youthPeriod);
+  // console.log(seniorPeriod);
+  // console.log(nationalPeriod);
+  // console.log(managementPeriod);
 
   ///////////////////////////////////// Create Youth Career specfic arrays for use in html ///////////////////////////////////////////////////////////
 
   let youthYears = [];
   let youthClubs = [];
+
+  console.log(youthPeriod);
 
   const generateYouthHTMLarrays = function (youthPeriod) {
     youthPeriod.shift(); // removes "youth" string, which is first item in array
@@ -156,15 +155,16 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
       youthYears.push(dateItem); // pushes date to its own array
       let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
       youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
+      console.log(youthPeriod);
+      console.log(youthYears);
+      console.log(youthClubs);
     }
   };
 
   generateYouthHTMLarrays(youthPeriod);
 
-  // TODO // could do, could use regular expression to remove [] and 123 characters from robbie savage youth clubs
-
-  console.log(youthYears);
-  console.log(youthClubs);
+  // console.log(youthYears);
+  // console.log(youthClubs);
   console.log(youthPeriod);
 
   //   //////////////////////////////////// Senior Career ///////////////////////////////////////////////////////////
@@ -197,12 +197,12 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
 
   generateSeniorHTMLarrays(seniorPeriod);
 
-  console.log(seniorYears);
-  console.log(seniorClubs);
-  console.log(seniorApps);
-  console.log(seniorGoals);
+  // console.log(seniorYears);
+  // console.log(seniorClubs);
+  // console.log(seniorApps);
+  // console.log(seniorGoals);
 
-  console.log(seniorPeriod);
+  // console.log(seniorPeriod);
 
   //   //////////////////////////////////// International Career ///////////////////////////////////////////////////////////
 
@@ -234,10 +234,10 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
 
   generateNationalHTMLarrays(nationalPeriod);
 
-  console.log(nationalYears);
-  console.log(nationalGroups);
-  console.log(nationalApps);
-  console.log(nationalGoals);
+  // console.log(nationalYears);
+  // console.log(nationalGroups);
+  // console.log(nationalApps);
+  // console.log(nationalGoals);
 
   //   //////////////////////////////////// Managerial Career ///////////////////////////////////////////////////////////
 
@@ -260,15 +260,13 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
 
   generateManagementHTMLarrays(managementPeriod);
 
-  console.log(managementClubs);
-  console.log(managementYears);
-  console.log(managementPeriod);
+  // console.log(managementClubs);
+  // console.log(managementYears);
+  // console.log(managementPeriod);
 
-  // // ///////////////////////////////////////////// generate html //////////////////////////////////////////////////
+  // // // ///////////////////////////////////////////// generate html //////////////////////////////////////////////////
 
-  console.log(youthYears);
-  console.log(youthClubs);
-
+  ////////////////////////////////////////// Generate youthTableHTML
   let youthTable =
     "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
 
@@ -279,11 +277,81 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
 
   youthTable += "</tbody></table>";
 
-  console.log(youthTable);
+  let youthTableHTML = document.getElementById("youth");
 
-  // Display data in HTML table
+  youthTableHTML.innerHTML = youthTable;
 
-  let text = document.getElementById("text");
+  ////////////////////////////////////////// Generate seniorTableHTML
 
-  text.innerHTML = youthTable;
+  let seniorTable =
+    "<table><thead><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
+
+  for (let i = 0; i < seniorYears.length; i++) {
+    seniorTable +=
+      "<tr><td>" +
+      seniorYears[i] +
+      "</td><td>" +
+      seniorClubs[i] +
+      "</td><td>" +
+      seniorApps[i] +
+      "</td> <td>" +
+      seniorGoals[i] +
+      "</td> </tr>";
+  }
+
+  seniorTable += "</tbody></table>";
+
+  console.log(seniorTable);
+
+  let seniorTableHTML = document.getElementById("senior");
+
+  seniorTableHTML.innerHTML = seniorTable;
+
+  ////////////////////////////////////////// Generate nationalTableHTML
+
+  let nationalTable =
+    "<table><thead><tr><th> Years </th> <th> National Groups </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
+
+  for (let i = 0; i < nationalYears.length; i++) {
+    nationalTable +=
+      "<tr> <td>" +
+      nationalYears[i] +
+      "</td> <td>" +
+      nationalGroups[i] +
+      "</td> <td>" +
+      nationalApps[i] +
+      "</td> <td>" +
+      nationalGoals[i] +
+      "</td> </tr>";
+  }
+
+  nationalTable += "</tbody></table>";
+
+  console.log(nationalTable);
+
+  let nationalTableHTML = document.getElementById("national");
+
+  nationalTableHTML.innerHTML = nationalTable;
+
+  ////////////////////////////////////////// Generate ManagementTableHTML
+
+  let managementTable =
+    "<table><thead><tr><th> Years </th> <th> Teams Managed </th> </tr></thead><tbody>";
+
+  for (let i = 0; i < managementYears.length; i++) {
+    managementTable +=
+      "<tr> <td>" +
+      managementYears[i] +
+      "</td><td>" +
+      managementClubs[i] +
+      "</td> </tr>";
+  }
+
+  managementTable += "</tbody></table>";
+
+  console.log(managementTable);
+
+  let managementTableHTML = document.getElementById("management");
+
+  managementTableHTML.innerHTML = managementTable;
 });

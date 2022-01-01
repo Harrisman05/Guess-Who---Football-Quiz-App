@@ -10,7 +10,7 @@ Height 6 ft 2 in (1.88 m)[1]
 Position(s) Centre back
 Youth career
 Senrab
-1989 West Bromwich Albion
+West Bromwich Albion
 Senior career*
 Years Team Apps (Gls)
 1989–1991 West Bromwich Albion 2 (0)

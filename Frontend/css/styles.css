@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+table {
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 100px;
+  border: 5px rgba(110, 27, 27, 0.63) solid;
+  padding: 20px;
+}
+
+td {
+  padding: 10px;
+}
+
+th {
+  padding: 0 10px 0 10px;
+}
+
+.tdClubs {
+  text-align: center;
+}
