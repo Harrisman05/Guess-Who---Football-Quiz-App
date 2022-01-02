@@ -33,7 +33,7 @@ let random_player = chooseRandomPlayer(playerDatabaseArray);
 
 console.log(random_player);
 
-// random_player = "Ugo Ehiogu"; // Ugo Ehiogu, Luke Young, Ugo Ehiogu BUG, Sylvain Distin VIDEO
+random_player = "Frank Lampard"; // BUG // Ugo Ehiogu
 
 import(`./summariesJS/${random_player}.js`).then((player) => {
   ///////////////////////////////////////// Generate chosen player summary
@@ -172,8 +172,8 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
 
   generateYouthHTMLarrays(youthPeriod);
 
-  // console.log(youthYears);
-  // console.log(youthClubs);
+  console.log(youthYears);
+  console.log(youthClubs);
   console.log(youthPeriod);
 
   //   //////////////////////////////////// Senior Career ///////////////////////////////////////////////////////////
@@ -273,152 +273,99 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
   // console.log(managementYears);
   // console.log(managementPeriod);
 
-  // // // ///////////////////////////////////////////// generate html //////////////////////////////////////////////////
+  ////////////////////////////////////////Generating HTML tables
 
-  ////////////////////////////////////////// Generate youthTableHTML
-  let youthTable =
-    "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
+  let youth = "youth";
+  let senior = "senior";
+  let national = "national";
+  let management = "management";
 
-  for (let i = 0; i < youthClubs.length; i++) {
-    let clubEmoji;
+  const generateSummaryTables = function (
+    tableID = "",
+    years = [],
+    clubs = [],
+    apps = [],
+    goals = []
+  ) {
+    let summaryTable = "";
 
-    if (youthClubs[i].includes("→")) {
-      clubEmoji = youthClubs[i].split(" ");
-      clubEmoji.pop();
-      clubEmoji.shift();
-      clubEmoji = clubEmoji.join(" ");
-    } else {
-      clubEmoji = youthClubs[i];
+    switch (tableID) {
+      case "youth":
+        summaryTable =
+          "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
+        break;
+      case "senior":
+        summaryTable =
+          "<table><thead><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
+        break;
+      case "national":
+        summaryTable =
+          "<table><thead><tr><th> Years </th> <th> National Groups </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
+        break;
+      case "management":
+        summaryTable =
+          "<table><thead><tr><th> Years </th> <th> Teams managed </th></tr></thead><tbody>";
+        break;
     }
 
-    youthYears[i] === undefined
-      ? (youthYears[i] = "")
-      : (youthYears[i] = youthYears[i]);
+    for (let i = 0; i < clubs.length; i++) {
+      let clubEmoji;
 
-    youthTable +=
-      "<tr><td>" +
-      youthYears[i] +
-      "</td><td>" +
-      youthClubs[i] +
-      `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>` +
-      "</td></tr>";
-  }
+      if (clubs[i].includes("→")) {
+        // allowing emojis to be added to loan spells
+        clubEmoji = clubs[i].split(" ");
+        clubEmoji.pop();
+        clubEmoji.shift();
+        clubEmoji = clubEmoji.join(" ");
+      } else {
+        clubEmoji = clubs[i];
+      }
 
-  youthTable += "</tbody></table>";
+      if (tableID === "youth") {
+        // fixing undefined error in youth section (Ugo bug)
+        years[i] === undefined ? (years[i] = "") : (years[i] = years[i]);
+      }
 
-  let youthTableHTML = document.getElementById("youth");
+      summaryTable +=
+        "<tr> <td>" +
+        years[i] +
+        "</td><td>" +
+        clubs[i] +
+        `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>`;
 
-  youthTableHTML.innerHTML = youthTable;
+      if (Boolean(apps.length)) {
+        summaryTable += "</td><td>" + apps[i];
+      }
 
-  ////////////////////////////////////////// Generate seniorTableHTML
+      if (Boolean(goals.length)) {
+        summaryTable += "</td><td>" + goals[i];
+      }
 
-  let seniorTable =
-    "<table><thead><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
+      summaryTable += "</tbody></table>";
 
-  for (let i = 0; i < seniorYears.length; i++) {
-    let clubEmoji;
+      let summaryTableHTML = document.getElementById(`${tableID}`);
 
-    if (seniorClubs[i].includes("→")) {
-      clubEmoji = seniorClubs[i].split(" ");
-      clubEmoji.pop();
-      clubEmoji.shift();
-      clubEmoji = clubEmoji.join(" ");
-    } else {
-      clubEmoji = seniorClubs[i];
+      summaryTableHTML.innerHTML = summaryTable;
     }
-
-    seniorTable +=
-      "<tr><td>" +
-      seniorYears[i] +
-      "</td><td>" +
-      seniorClubs[i] +
-      `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>` +
-      "</td><td>" +
-      seniorApps[i] +
-      "</td> <td>" +
-      seniorGoals[i] +
-      "</td> </tr>";
-  }
-
-  seniorTable += "</tbody></table>";
-
-  console.log(seniorTable);
-
-  let seniorTableHTML = document.getElementById("senior");
-
-  seniorTableHTML.innerHTML = seniorTable;
-
-  ////////////////////////////////////////// Generate nationalTableHTML
-
-  let nationalTable =
-    "<table><thead><tr><th> Years </th> <th> National Groups </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
-
-  for (let i = 0; i < nationalYears.length; i++) {
-    let clubEmoji;
-
-    if (nationalGroups[i].includes("→")) {
-      clubEmoji = nationalGroups[i].split(" ");
-      clubEmoji.pop();
-      clubEmoji.shift();
-      clubEmoji = clubEmoji.join(" ");
-    } else {
-      clubEmoji = nationalGroups[i];
-    }
-
-    nationalTable +=
-      "<tr> <td>" +
-      nationalYears[i] +
-      "</td> <td>" +
-      nationalGroups[i] +
-      `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>` +
-      "</td> <td>" +
-      nationalApps[i] +
-      "</td> <td>" +
-      nationalGoals[i] +
-      "</td> </tr>";
-  }
-
-  nationalTable += "</tbody></table>";
-
-  console.log(nationalTable);
-
-  let nationalTableHTML = document.getElementById("national");
-
-  nationalTableHTML.innerHTML = nationalTable;
-
-  ////////////////////////////////////////// Generate ManagementTableHTML
-
-  let managementTable =
-    "<table><thead><tr><th> Years </th> <th> Teams Managed </th> </tr></thead><tbody>";
-
-  for (let i = 0; i < managementYears.length; i++) {
-    let clubEmoji;
-
-    if (managementClubs[i].includes("→")) {
-      clubEmoji = managementClubs[i].split(" ");
-      clubEmoji.pop();
-      clubEmoji.shift();
-      clubEmoji = clubEmoji.join(" ");
-    } else {
-      clubEmoji = managementClubs[i];
-    }
-
-    managementTable +=
-      "<tr> <td>" +
-      managementYears[i] +
-      "</td><td>" +
-      managementClubs[i] +
-      `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>` +
-      "</td> </tr>";
-  }
-
-  managementTable += "</tbody></table>";
-
-  console.log(managementTable);
-
-  let managementTableHTML = document.getElementById("management");
-
-  managementTableHTML.innerHTML = managementTable;
-
-  ////////////////////////////////////////Add image testing
+  };
+  const youthTable = generateSummaryTables(youth, youthYears, youthClubs);
+  const seniorTable = generateSummaryTables(
+    senior,
+    seniorYears,
+    seniorClubs,
+    seniorApps,
+    seniorGoals
+  );
+  const nationalTable = generateSummaryTables(
+    national,
+    nationalYears,
+    nationalGroups,
+    nationalApps,
+    nationalGoals
+  );
+  const managementTable = generateSummaryTables(
+    management,
+    managementYears,
+    managementClubs
+  );
 });
