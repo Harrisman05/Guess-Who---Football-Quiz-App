@@ -33,7 +33,7 @@ let random_player = chooseRandomPlayer(playerDatabaseArray);
 
 console.log(random_player);
 
-// random_player = "Frank Lampard"; // Ugo Ehiogu, Luke Young, Ugo Ehiogu BUG, Sylvain Distin VIDEO
+// random_player = "Ugo Ehiogu"; // Ugo Ehiogu, Luke Young, Ugo Ehiogu BUG, Sylvain Distin VIDEO
 
 import(`./summariesJS/${random_player}.js`).then((player) => {
   ///////////////////////////////////////// Generate chosen player summary
@@ -71,7 +71,7 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
 
   generatePersonalInfo(summaryArray);
 
-  /////////////////////////////////////////////////////// generate youthPerio
+  /////////////////////////////////////////////////////// generate youthPeriod
 
   let youthPeriod = [];
   let seniorPeriod = [];
@@ -84,7 +84,7 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
         // filter the first section (youth career) into separate array
         let item = summaryArray.shift();
         youthPeriod.push(item);
-        console.log(summaryArray);
+        console.log(youthPeriod);
       }
     }
   };
@@ -151,10 +151,19 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
     youthPeriod.shift(); // removes "youth" string, which is first item in array
     for (let i = 0; i < youthPeriod.length; i++) {
       let splitArray = youthPeriod[i].split(" "); // splits youthPeriod array into groups of strings
-      let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
-      youthYears.push(dateItem); // pushes date to its own array
-      let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
-      youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
+      console.log(splitArray);
+      if (splitArray[0].match(/\d/g) === null) {
+        let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
+        youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
+        console.log("the string didn't contain a number");
+        console.log(youthClubs);
+      } else {
+        let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
+        youthYears.push(dateItem); // pushes date to its own array
+        let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
+        youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
+      }
+
       console.log(youthPeriod);
       console.log(youthYears);
       console.log(youthClubs);
@@ -270,9 +279,29 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
   let youthTable =
     "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
 
-  for (let i = 0; i < youthYears.length; i++) {
+  for (let i = 0; i < youthClubs.length; i++) {
+    let clubEmoji;
+
+    if (youthClubs[i].includes("→")) {
+      clubEmoji = youthClubs[i].split(" ");
+      clubEmoji.pop();
+      clubEmoji.shift();
+      clubEmoji = clubEmoji.join(" ");
+    } else {
+      clubEmoji = youthClubs[i];
+    }
+
+    youthYears[i] === undefined
+      ? (youthYears[i] = "")
+      : (youthYears[i] = youthYears[i]);
+
     youthTable +=
-      "<tr><td>" + youthYears[i] + "</td><td>" + youthClubs[i] + "</td></tr>";
+      "<tr><td>" +
+      youthYears[i] +
+      "</td><td>" +
+      youthClubs[i] +
+      `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>` +
+      "</td></tr>";
   }
 
   youthTable += "</tbody></table>";
@@ -287,11 +316,23 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
     "<table><thead><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
 
   for (let i = 0; i < seniorYears.length; i++) {
+    let clubEmoji;
+
+    if (seniorClubs[i].includes("→")) {
+      clubEmoji = seniorClubs[i].split(" ");
+      clubEmoji.pop();
+      clubEmoji.shift();
+      clubEmoji = clubEmoji.join(" ");
+    } else {
+      clubEmoji = seniorClubs[i];
+    }
+
     seniorTable +=
       "<tr><td>" +
       seniorYears[i] +
       "</td><td>" +
       seniorClubs[i] +
+      `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>` +
       "</td><td>" +
       seniorApps[i] +
       "</td> <td>" +
@@ -313,11 +354,23 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
     "<table><thead><tr><th> Years </th> <th> National Groups </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
 
   for (let i = 0; i < nationalYears.length; i++) {
+    let clubEmoji;
+
+    if (nationalGroups[i].includes("→")) {
+      clubEmoji = nationalGroups[i].split(" ");
+      clubEmoji.pop();
+      clubEmoji.shift();
+      clubEmoji = clubEmoji.join(" ");
+    } else {
+      clubEmoji = nationalGroups[i];
+    }
+
     nationalTable +=
       "<tr> <td>" +
       nationalYears[i] +
       "</td> <td>" +
       nationalGroups[i] +
+      `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>` +
       "</td> <td>" +
       nationalApps[i] +
       "</td> <td>" +
@@ -339,11 +392,23 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
     "<table><thead><tr><th> Years </th> <th> Teams Managed </th> </tr></thead><tbody>";
 
   for (let i = 0; i < managementYears.length; i++) {
+    let clubEmoji;
+
+    if (managementClubs[i].includes("→")) {
+      clubEmoji = managementClubs[i].split(" ");
+      clubEmoji.pop();
+      clubEmoji.shift();
+      clubEmoji = clubEmoji.join(" ");
+    } else {
+      clubEmoji = managementClubs[i];
+    }
+
     managementTable +=
       "<tr> <td>" +
       managementYears[i] +
       "</td><td>" +
       managementClubs[i] +
+      `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>` +
       "</td> </tr>";
   }
 
@@ -354,4 +419,6 @@ import(`./summariesJS/${random_player}.js`).then((player) => {
   let managementTableHTML = document.getElementById("management");
 
   managementTableHTML.innerHTML = managementTable;
+
+  ////////////////////////////////////////Add image testing
 });

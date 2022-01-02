@@ -8,7 +8,7 @@ Place of birth Dublin, Ireland
 Height 1.75 m (5 ft 9 in)[1]
 Position(s) Right back
 Youth career
-198x–1991 Stella Maris
+–1991 Stella Maris
 1991–1993 Tottenham Hotspur
 Senior career*
 Years Team Apps (Gls)
