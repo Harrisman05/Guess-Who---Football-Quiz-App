@@ -18,11 +18,6 @@ playerDatabase = playerDatabase.filter(Boolean); // filter out empty strings
 
 //////////////////////////////////////////////////////
 
-// PATCHED David James[3], Danny Murphy[32], Luke Young[48], Paul Robinson[52], Ben Foster[62], Chris Perry[63], James Beattie [87], Kevin Campbell [93]
-// PATCHED Gary Kelly [95], Matthew Taylor [98], Paul Telfer [107], Peter Atherton[108], Ian Walker [117], James Morrison [119],
-// PATCHED Simon Davies [128]
-// PATCHED Graeme le Saux [91], Joe Hart [82], Nigel Winterburn [70] (wrong table selector selected in query) - wrong table reference
-
 (async () => {
   for (let i = 0; i < 1; i++) {
     const browser = await puppeteer.launch({ headless: false });

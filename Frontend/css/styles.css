@@ -8,11 +8,47 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+h1 {
+  color: white;
+  width: 500px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+  display: block;
+  margin: 0px auto 20px auto;
+}
+
+img {
+  margin-left: 5px;
+  position: relative;
+  top: 3px;
+}
+
+.practise {
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 100px;
+  border: 5px rgba(179, 141, 179, 0.637) solid;
+  padding: 20px;
+  background-color: rgba(128, 128, 128, 0.308);
+}
+
 table {
   color: rgba(255, 255, 255, 0.7);
   margin-left: 100px;
   border: 5px rgba(110, 27, 27, 0.63) solid;
   padding: 20px;
+}
+
+table > tbody > tr > td:nth-child(3) {
+  text-align: center;
+}
+
+table > tbody > tr > td:nth-child(4) {
+  text-align: center;
 }
 
 td {
@@ -28,25 +64,29 @@ th {
   text-align: center;
 }
 
-table > tbody > tr > td:nth-child(3) {
+.summaryTable > thead > tr:first-child > th {
+  color: rgb(87, 169, 236);
+  font-size: 30px;
   text-align: center;
 }
 
-table > tbody > tr > td:nth-child(4) {
-  text-align: center;
-}
-
-.practise {
-  color: rgba(255, 255, 255, 0.7);
-  margin-left: 100px;
-  border: 5px rgba(179, 141, 179, 0.637) solid;
-  padding: 20px;
-  background-color: rgba(128, 128, 128, 0.308);
-}
-
-img {
-  margin-left: 5px;
-  /* margin-top: 10px; */
+/* #youth {
   position: relative;
-  top: 3px;
 }
+
+#senior {
+  position: relative;
+  right: 50px;
+}
+
+#national {
+  position: relative;
+  bottom: 50px;
+  left: 50px;
+}
+
+#management {
+  position: relative;
+  bottom: 50px;
+  right: 50px;
+} */

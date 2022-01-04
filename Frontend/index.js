@@ -21,351 +21,424 @@ const generatePlayerDatabaseArray = function (playerDatabase) {
 
 let playerDatabaseArray = generatePlayerDatabaseArray(playerDatabase);
 
-//////////////////////////////////////////// Random Generator on Player database array to obtain chosen random player
+document
+  .querySelector(".startGameButton")
+  .addEventListener("click", function () {
+    // Random Generator on Player database array to obtain chosen random player
 
-const chooseRandomPlayer = function (playerDatabaseArray) {
-  let randomNum = Math.floor(Math.random() * playerDatabaseArray.length);
+    const chooseRandomPlayer = function (playerDatabaseArray) {
+      let randomNum = Math.floor(Math.random() * playerDatabaseArray.length);
 
-  return playerDatabaseArray[randomNum];
-};
+      return playerDatabaseArray[randomNum];
+    };
 
-let random_player = chooseRandomPlayer(playerDatabaseArray);
+    let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-console.log(random_player);
+    // random_player = "Brad Friedel"; // BUG // Ugo Ehiogu
 
-random_player = "Frank Lampard"; // BUG // Ugo Ehiogu
+    console.log(random_player);
 
-import(`./summariesJS/${random_player}.js`).then((player) => {
-  ///////////////////////////////////////// Generate chosen player summary
+    //////////////////////////////Async from this point
 
-  let chosenPlayerSummary = player.player;
+    import(`./summariesJS/${random_player}.js`).then((player) => {
+      ///////////////////////////////////////// Generate chosen player summary
 
-  chosenPlayerSummary = chosenPlayerSummary.split("\n");
+      let chosenPlayerSummary = player.player;
 
-  chosenPlayerSummary = chosenPlayerSummary.filter(Boolean);
+      chosenPlayerSummary = chosenPlayerSummary.split("\n");
 
-  while (
-    chosenPlayerSummary[chosenPlayerSummary.length - 1][0].match(/\d/g) === null
-  ) {
-    chosenPlayerSummary.pop();
-  }
+      chosenPlayerSummary = chosenPlayerSummary.filter(Boolean);
 
-  let summaryArray = chosenPlayerSummary;
+      while (
+        chosenPlayerSummary[chosenPlayerSummary.length - 1][0].match(/\d/g) ===
+        null
+      ) {
+        chosenPlayerSummary.pop();
+      }
 
-  console.log(summaryArray);
+      let summaryArray = chosenPlayerSummary;
 
-  /////////////////////////////////////////// Generate personal info
-  // TODO add regular expression to remove numbers in square brackets from strings
-  let personalInfo = [];
+      // console.log(summaryArray);
 
-  const generatePersonalInfo = function (summaryArray) {
-    while (
-      summaryArray[0] !== "Youth career" &&
-      summaryArray[0] !== "Senior career*"
-    ) {
-      let infoItem = summaryArray.splice(0, 1).toString();
-      personalInfo.push(infoItem);
+      /////////////////////////////////////////// Generate personal info
+      // TODO add regular expression to remove numbers in square brackets from strings
+      let personalInfo = [];
+
+      const generatePersonalInfo = function (summaryArray) {
+        while (
+          summaryArray[0] !== "Youth career" &&
+          summaryArray[0] !== "Senior career*"
+        ) {
+          let infoItem = summaryArray.splice(0, 1).toString();
+          personalInfo.push(infoItem);
+          // console.log(personalInfo);
+        }
+      };
+
+      generatePersonalInfo(summaryArray);
+
+      /////////////////////////////////////////////////////// generate youthPeriod
+
+      let youthPeriod = [];
+      let seniorPeriod = [];
+      let nationalPeriod = [];
+      let managementPeriod = [];
+
+      const generateYouthPeriod = function (summaryArray) {
+        if (summaryArray[0] === "Youth career") {
+          while (summaryArray[0] !== "Senior career*") {
+            // filter the first section (youth career) into separate array
+            let item = summaryArray.shift();
+            youthPeriod.push(item);
+            console.log(youthPeriod);
+          }
+        }
+      };
+
+      // console.log(youthPeriod);
       // console.log(personalInfo);
-    }
-  };
+      generateYouthPeriod(summaryArray);
 
-  generatePersonalInfo(summaryArray);
+      ////////////////////////////////////////////////////// generate SeniorPeriod
+      const generateSeniorPeriod = function (summaryArray) {
+        if (
+          summaryArray[0] === "Senior career*" &&
+          (summaryArray.includes("National team‡") ||
+            summaryArray.includes("National team"))
+        ) {
+          while (summaryArray[0][0] !== "N") {
+            let item = summaryArray.shift(); // filter the second section (senior career) into separate array
+            seniorPeriod.push(item);
+          }
+        } else {
+          seniorPeriod = summaryArray;
+        }
+      };
 
-  /////////////////////////////////////////////////////// generate youthPeriod
+      generateSeniorPeriod(summaryArray);
 
-  let youthPeriod = [];
-  let seniorPeriod = [];
-  let nationalPeriod = [];
-  let managementPeriod = [];
+      ////////////////////////////////////////////////////// generate National Period (if applicable)
 
-  const generateYouthPeriod = function (summaryArray) {
-    if (summaryArray[0] === "Youth career") {
-      while (summaryArray[0] !== "Senior career*") {
-        // filter the first section (youth career) into separate array
-        let item = summaryArray.shift();
-        youthPeriod.push(item);
-        console.log(youthPeriod);
-      }
-    }
-  };
+      const generateNationalPeriod = function (summaryArray) {
+        if (
+          summaryArray[0][0] === "N" &&
+          summaryArray.includes("Teams managed")
+        ) {
+          while (summaryArray[0][0] !== "T") {
+            // filter the national career into separate array if they have a management career as well
+            let item = summaryArray.shift();
+            nationalPeriod.push(item);
+          }
+          managementPeriod = summaryArray; // if they have a management career, the remainder of the summary array will become the management career
+        } else if (
+          summaryArray.includes("National team‡") ||
+          summaryArray.includes("National team")
+        ) {
+          // make sure non-national and manager types don't get remainder assigned
+          nationalPeriod = summaryArray; // if they have a national career and no management career, then the remainder of the summary array will be their national career
+        }
+      };
 
-  // console.log(youthPeriod);
-  // console.log(personalInfo);
-  generateYouthPeriod(summaryArray);
+      generateNationalPeriod(summaryArray);
 
-  ////////////////////////////////////////////////////// generate SeniorPeriod
-  const generateSeniorPeriod = function (summaryArray) {
-    if (
-      summaryArray[0] === "Senior career*" &&
-      (summaryArray.includes("National team‡") ||
-        summaryArray.includes("National team"))
-    ) {
-      while (summaryArray[0][0] !== "N") {
-        let item = summaryArray.shift(); // filter the second section (senior career) into separate array
-        seniorPeriod.push(item);
-      }
-    } else {
-      seniorPeriod = summaryArray;
-    }
-  };
+      ////////////////////////////////////////// log all periods to check they work
 
-  generateSeniorPeriod(summaryArray);
+      // console.log(personalInfo);
+      // console.log(youthPeriod);
+      // console.log(seniorPeriod);
+      // console.log(nationalPeriod);
+      // console.log(managementPeriod);
 
-  ////////////////////////////////////////////////////// generate National Period (if applicable)
+      ///////////////////////////////////// Create Youth Career specfic arrays for use in html ///////////////////////////////////////////////////////////
 
-  const generateNationalPeriod = function (summaryArray) {
-    if (summaryArray[0][0] === "N" && summaryArray.includes("Teams managed")) {
-      while (summaryArray[0][0] !== "T") {
-        // filter the national career into separate array if they have a management career as well
-        let item = summaryArray.shift();
-        nationalPeriod.push(item);
-      }
-      managementPeriod = summaryArray; // if they have a management career, the remainder of the summary array will become the management career
-    } else if (
-      summaryArray.includes("National team‡") ||
-      summaryArray.includes("National team")
-    ) {
-      // make sure non-national and manager types don't get remainder assigned
-      nationalPeriod = summaryArray; // if they have a national career and no management career, then the remainder of the summary array will be their national career
-    }
-  };
+      let youthYears = [];
+      let youthClubs = [];
 
-  generateNationalPeriod(summaryArray);
+      // console.log(youthPeriod);
 
-  ////////////////////////////////////////// log all periods to check they work
+      const generateYouthHTMLarrays = function (youthPeriod) {
+        youthPeriod.shift(); // removes "youth" string, which is first item in array
+        for (let i = 0; i < youthPeriod.length; i++) {
+          let splitArray = youthPeriod[i].split(" "); // splits youthPeriod array into groups of strings
+          // console.log(splitArray);
+          if (splitArray[0].match(/\d/g) === null) {
+            let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
+            youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
+          } else {
+            let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
+            youthYears.push(dateItem); // pushes date to its own array
+            let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
+            youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
+          }
+        }
+      };
 
-  // console.log(personalInfo);
-  // console.log(youthPeriod);
-  // console.log(seniorPeriod);
-  // console.log(nationalPeriod);
-  // console.log(managementPeriod);
+      generateYouthHTMLarrays(youthPeriod);
 
-  ///////////////////////////////////// Create Youth Career specfic arrays for use in html ///////////////////////////////////////////////////////////
+      // console.log(youthYears);
+      // console.log(youthClubs);
+      // console.log(youthPeriod);
 
-  let youthYears = [];
-  let youthClubs = [];
+      //   //////////////////////////////////// Senior Career ///////////////////////////////////////////////////////////
 
-  console.log(youthPeriod);
+      let seniorYears = [];
+      let seniorClubs = [];
+      let seniorApps = [];
+      let seniorGoals = [];
 
-  const generateYouthHTMLarrays = function (youthPeriod) {
-    youthPeriod.shift(); // removes "youth" string, which is first item in array
-    for (let i = 0; i < youthPeriod.length; i++) {
-      let splitArray = youthPeriod[i].split(" "); // splits youthPeriod array into groups of strings
-      console.log(splitArray);
-      if (splitArray[0].match(/\d/g) === null) {
-        let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
-        youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
-        console.log("the string didn't contain a number");
-        console.log(youthClubs);
-      } else {
-        let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
-        youthYears.push(dateItem); // pushes date to its own array
-        let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
-        youthClubs.push(rejoinClubs); // pushes clubs onto youthClubs array
-      }
+      const generateSeniorHTMLarrays = function (seniorPeriod) {
+        if (seniorPeriod[seniorPeriod.length - 1][0].match(/\d/g) === null) {
+          // removes "Total numApps numGoals" from end of array if applicable
+          seniorPeriod.pop();
+        }
 
-      console.log(youthPeriod);
-      console.log(youthYears);
-      console.log(youthClubs);
-    }
-  };
+        seniorPeriod.splice(0, 2); // removes "Senior career*" and "Years Team Apps (Gls)" from list
 
-  generateYouthHTMLarrays(youthPeriod);
+        for (let i = 0; i < seniorPeriod.length; i++) {
+          let splitArray = seniorPeriod[i].split(" ");
+          let dateItem = splitArray.shift();
+          seniorYears.push(dateItem);
+          let goalsItem = splitArray.pop();
+          seniorGoals.push(goalsItem);
+          let appsItem = splitArray.pop();
+          seniorApps.push(appsItem);
+          let rejoinClubs = splitArray.join(" ");
+          seniorClubs.push(rejoinClubs);
+        }
+      };
 
-  console.log(youthYears);
-  console.log(youthClubs);
-  console.log(youthPeriod);
+      generateSeniorHTMLarrays(seniorPeriod);
 
-  //   //////////////////////////////////// Senior Career ///////////////////////////////////////////////////////////
+      // console.log(seniorYears);
+      // console.log(seniorClubs);
+      // console.log(seniorApps);
+      // console.log(seniorGoals);
 
-  let seniorYears = [];
-  let seniorClubs = [];
-  let seniorApps = [];
-  let seniorGoals = [];
+      // console.log(seniorPeriod);
 
-  const generateSeniorHTMLarrays = function (seniorPeriod) {
-    if (seniorPeriod[seniorPeriod.length - 1][0].match(/\d/g) === null) {
-      // removes "Total numApps numGoals" from end of array if applicable
-      seniorPeriod.pop();
-    }
+      //   //////////////////////////////////// International Career ///////////////////////////////////////////////////////////
 
-    seniorPeriod.splice(0, 2); // removes "Senior career*" and "Years Team Apps (Gls)" from list
+      // Truthy/falsy check. If national period .length is empty (evaluates to zero), it will evaluate to false.
+      // if true, national length has items in it, so the if code block will execute.
 
-    for (let i = 0; i < seniorPeriod.length; i++) {
-      let splitArray = seniorPeriod[i].split(" ");
-      let dateItem = splitArray.shift();
-      seniorYears.push(dateItem);
-      let goalsItem = splitArray.pop();
-      seniorGoals.push(goalsItem);
-      let appsItem = splitArray.pop();
-      seniorApps.push(appsItem);
-      let rejoinClubs = splitArray.join(" ");
-      seniorClubs.push(rejoinClubs);
-    }
-  };
+      let nationalYears = [];
+      let nationalGroups = [];
+      let nationalApps = [];
+      let nationalGoals = [];
 
-  generateSeniorHTMLarrays(seniorPeriod);
+      const generateNationalHTMLarrays = function (nationalPeriod) {
+        if (Boolean(nationalPeriod.length)) {
+          nationalPeriod.splice(0, 1); // this removes first item in array called "national team" so that just data is present
 
-  // console.log(seniorYears);
-  // console.log(seniorClubs);
-  // console.log(seniorApps);
-  // console.log(seniorGoals);
+          for (let i = 0; i < nationalPeriod.length; i++) {
+            let splitArray = nationalPeriod[i].split(" ");
+            let dateItem = splitArray.shift();
+            nationalYears.push(dateItem);
+            let goalsItem = splitArray.pop();
+            nationalGoals.push(goalsItem);
+            let appsItem = splitArray.pop();
+            nationalApps.push(appsItem);
+            let rejoinGroups = splitArray.join(" ");
+            nationalGroups.push(rejoinGroups);
+          }
+        }
+      };
 
-  // console.log(seniorPeriod);
+      generateNationalHTMLarrays(nationalPeriod);
 
-  //   //////////////////////////////////// International Career ///////////////////////////////////////////////////////////
+      // console.log(nationalYears);
+      // console.log(nationalGroups);
+      // console.log(nationalApps);
+      // console.log(nationalGoals);
 
-  // Truthy/falsy check. If national period .length is empty (evaluates to zero), it will evaluate to false.
-  // if true, national length has items in it, so the if code block will execute.
+      //   //////////////////////////////////// Managerial Career ///////////////////////////////////////////////////////////
 
-  let nationalYears = [];
-  let nationalGroups = [];
-  let nationalApps = [];
-  let nationalGoals = [];
+      let managementYears = [];
+      let managementClubs = [];
 
-  const generateNationalHTMLarrays = function (nationalPeriod) {
-    if (Boolean(nationalPeriod.length)) {
-      nationalPeriod.splice(0, 1); // this removes first item in array called "national team" so that just data is present
+      const generateManagementHTMLarrays = function (managementPeriod) {
+        if (Boolean(managementPeriod.length)) {
+          managementPeriod.shift(); // this removes first item in array called "national team" so that just data is present
 
-      for (let i = 0; i < nationalPeriod.length; i++) {
-        let splitArray = nationalPeriod[i].split(" ");
-        let dateItem = splitArray.shift();
-        nationalYears.push(dateItem);
-        let goalsItem = splitArray.pop();
-        nationalGoals.push(goalsItem);
-        let appsItem = splitArray.pop();
-        nationalApps.push(appsItem);
-        let rejoinGroups = splitArray.join(" ");
-        nationalGroups.push(rejoinGroups);
-      }
-    }
-  };
+          for (let i = 0; i < managementPeriod.length; i++) {
+            let splitArray = managementPeriod[i].split(" "); // splits managementPeriod array into groups of strings
+            let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
+            managementYears.push(dateItem); // pushes date to its own array
+            let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
+            managementClubs.push(rejoinClubs); // pushes clubs onto managementClubs array
+          }
+        }
+      };
 
-  generateNationalHTMLarrays(nationalPeriod);
+      generateManagementHTMLarrays(managementPeriod);
 
-  // console.log(nationalYears);
-  // console.log(nationalGroups);
-  // console.log(nationalApps);
-  // console.log(nationalGoals);
+      // console.log(managementClubs);
+      // console.log(managementYears);
+      // console.log(managementPeriod);
 
-  //   //////////////////////////////////// Managerial Career ///////////////////////////////////////////////////////////
+      //////////////////////////////////////// Personal info
 
-  let managementYears = [];
-  let managementClubs = [];
+      let hintItems = [];
 
-  const generateManagementHTMLarrays = function (managementPeriod) {
-    if (Boolean(managementPeriod.length)) {
-      managementPeriod.shift(); // this removes first item in array called "national team" so that just data is present
+      const generatePersonalInfoarrays = function (personalInfo) {
+        console.log(personalInfo);
 
-      for (let i = 0; i < managementPeriod.length; i++) {
-        let splitArray = managementPeriod[i].split(" "); // splits managementPeriod array into groups of strings
-        let dateItem = splitArray.shift(); // removes the first string (date) from the group of strings
-        managementYears.push(dateItem); // pushes date to its own array
-        let rejoinClubs = splitArray.join(" "); // re-join the split array to make them strings again
-        managementClubs.push(rejoinClubs); // pushes clubs onto managementClubs array
-      }
-    }
-  };
+        for (let i = 0; i < personalInfo.length; i++) {
+          if (personalInfo.includes("Personal information")) {
+            personalInfo.shift();
+          }
+        }
 
-  generateManagementHTMLarrays(managementPeriod);
+        personalInfo.shift();
 
-  // console.log(managementClubs);
-  // console.log(managementYears);
-  // console.log(managementPeriod);
+        for (let i = personalInfo.length - 1; i > 0; i--) {
+          if (personalInfo.includes("Club information")) {
+            personalInfo.pop();
+          }
+        }
 
-  ////////////////////////////////////////Generating HTML tables
+        for (let i = 0; i < 2; i++) {
+          let hintSplit = personalInfo[i].split(" ");
 
-  let youth = "youth";
-  let senior = "senior";
-  let national = "national";
-  let management = "management";
+          for (let i = 0; i < 3; i++) {
+            hintSplit.shift();
+          }
 
-  const generateSummaryTables = function (
-    tableID = "",
-    years = [],
-    clubs = [],
-    apps = [],
-    goals = []
-  ) {
-    let summaryTable = "";
+          let rejoinedHint = hintSplit.join(" ");
+          hintItems.push(rejoinedHint);
+        }
 
-    switch (tableID) {
-      case "youth":
-        summaryTable =
-          "<table><thead><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
-        break;
-      case "senior":
-        summaryTable =
-          "<table><thead><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
-        break;
-      case "national":
-        summaryTable =
-          "<table><thead><tr><th> Years </th> <th> National Groups </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
-        break;
-      case "management":
-        summaryTable =
-          "<table><thead><tr><th> Years </th> <th> Teams managed </th></tr></thead><tbody>";
-        break;
-    }
+        for (let i = 2; i < 4; i++) {
+          personalInfo[i];
+          let hintSplit = personalInfo[i].split(" ");
+          hintSplit.shift();
+          let rejoinedHint = hintSplit.join(" ");
+          hintItems.push(rejoinedHint);
+        }
+      };
 
-    for (let i = 0; i < clubs.length; i++) {
-      let clubEmoji;
+      generatePersonalInfoarrays(personalInfo);
 
-      if (clubs[i].includes("→")) {
-        // allowing emojis to be added to loan spells
-        clubEmoji = clubs[i].split(" ");
-        clubEmoji.pop();
-        clubEmoji.shift();
-        clubEmoji = clubEmoji.join(" ");
-      } else {
-        clubEmoji = clubs[i];
-      }
+      ////////////////////////////////////////Generating HTML tables
 
-      if (tableID === "youth") {
-        // fixing undefined error in youth section (Ugo bug)
-        years[i] === undefined ? (years[i] = "") : (years[i] = years[i]);
-      }
+      let youth = "youth";
+      let senior = "senior";
+      let national = "national";
+      let management = "management";
+      let hint = "hint";
 
-      summaryTable +=
-        "<tr> <td>" +
-        years[i] +
-        "</td><td>" +
-        clubs[i] +
-        `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>`;
+      const generateSummaryTables = function (
+        tableID = "",
+        years = [],
+        clubs = [],
+        apps = [],
+        goals = [],
+        hint = []
+      ) {
+        let summaryTable = "";
 
-      if (Boolean(apps.length)) {
-        summaryTable += "</td><td>" + apps[i];
-      }
+        switch (tableID) {
+          case "youth":
+            summaryTable =
+              "<table><thead><tr><th colspan='2'> Youth Career </th></tr><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
+            break;
+          case "senior":
+            summaryTable =
+              "<table><thead><tr><th colspan='4'> Senior Career </th></tr><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
+            break;
+          case "national":
+            summaryTable =
+              "<table><thead><tr><th colspan='4'> National Career </th></tr><tr><th> Years </th> <th> National Groups </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
+            break;
+          case "management":
+            summaryTable =
+              "<table><thead><tr><th  colspan='2'> Management Career </th></tr><tr><th> Years </th> <th> Teams managed </th></tr></thead><tbody>";
+            break;
+          case "hint":
+            summaryTable =
+              "<table><thead><tr><th> Personal information </th></tr><tr><th> Item </th> <th> Details </th></tr></thead><tbody>";
 
-      if (Boolean(goals.length)) {
-        summaryTable += "</td><td>" + goals[i];
-      }
+            for (let i = 0; i < 4; i++) {
+              let itemHeader = [
+                "Data of birth",
+                "Place of birth",
+                "Height",
+                "Position(s)",
+              ];
+              summaryTable +=
+                "<tr><td>" + itemHeader[i] + "</td><td>" + hint[i];
 
-      summaryTable += "</tbody></table>";
+              summaryTable += "</tbody></table>";
 
-      let summaryTableHTML = document.getElementById(`${tableID}`);
+              let summaryTableHTML = document.getElementById(`${tableID}`);
 
-      summaryTableHTML.innerHTML = summaryTable;
-    }
-  };
-  const youthTable = generateSummaryTables(youth, youthYears, youthClubs);
-  const seniorTable = generateSummaryTables(
-    senior,
-    seniorYears,
-    seniorClubs,
-    seniorApps,
-    seniorGoals
-  );
-  const nationalTable = generateSummaryTables(
-    national,
-    nationalYears,
-    nationalGroups,
-    nationalApps,
-    nationalGoals
-  );
-  const managementTable = generateSummaryTables(
-    management,
-    managementYears,
-    managementClubs
-  );
-});
+              summaryTableHTML.innerHTML = summaryTable;
+            }
+        }
+
+        for (let i = 0; i < clubs.length; i++) {
+          let clubEmoji;
+
+          if (clubs[i].includes("→")) {
+            // allowing emojis to be added to loan spells
+            clubEmoji = clubs[i].split(" ");
+            clubEmoji.pop();
+            clubEmoji.shift();
+            clubEmoji = clubEmoji.join(" ");
+          } else {
+            clubEmoji = clubs[i];
+          }
+
+          if (tableID === "youth") {
+            // fixing undefined error in youth section (Ugo bug)
+            years[i] === undefined ? (years[i] = "") : (years[i] = years[i]);
+          }
+
+          summaryTable +=
+            "<tr> <td>" +
+            years[i] +
+            "</td><td>" +
+            clubs[i] +
+            `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>`;
+
+          if (Boolean(apps.length)) {
+            summaryTable += "</td><td>" + apps[i];
+          }
+
+          if (Boolean(goals.length)) {
+            summaryTable += "</td><td>" + goals[i];
+          }
+
+          summaryTable += "</tbody></table>";
+
+          let summaryTableHTML = document.getElementById(`${tableID}`);
+
+          summaryTableHTML.innerHTML = summaryTable;
+        }
+      };
+      const youthTable = generateSummaryTables(youth, youthYears, youthClubs);
+      const seniorTable = generateSummaryTables(
+        senior,
+        seniorYears,
+        seniorClubs,
+        seniorApps,
+        seniorGoals
+      );
+      const nationalTable = generateSummaryTables(
+        national,
+        nationalYears,
+        nationalGroups,
+        nationalApps,
+        nationalGoals
+      );
+      const managementTable = generateSummaryTables(
+        management,
+        managementYears,
+        managementClubs
+      );
+
+      const hintTable = generateSummaryTables(hint, [], [], [], [], hintItems);
+    });
+
+    // document.querySelector(".hint").addEventListener("click", function () {});
+  });

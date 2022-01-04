@@ -6,22 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <script defer type="module" src="index.js"></script>
   </head>
   <body>
     <header class="game">
       <h1>Football guessing game</h1>
     </header>
 
-    <input class="startGameButton" type="submit" />
+    <input class="hint" type="submit" value="I need a hint..." />
+
+    <input
+      class="startGameButton"
+      type="submit"
+      value="Generate random Player"
+    />
 
     <table class="summaryTable" id="youth"></table>
-    <br />
+
     <table class="summaryTable" id="senior"></table>
-    <br />
+
     <table class="summaryTable" id="national"></table>
-    <br />
+
     <table class="summaryTable" id="management"></table>
-    <br />
+
+    <table class="summaryTable" id="hint"></table>
+
     <!-- <table class="summaryTable" id="youth2"></table>
     <br />
     <table class="summaryTable" id="senior2"></table>
@@ -31,7 +40,7 @@
     <table class="summaryTable" id="management2"></table>
     <br /> -->
 
-    <table class="practise">
+    <!-- <table class="practise">
       <thead>
         <tr>
           <th>
@@ -66,8 +75,6 @@
           <td>some</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </body>
-
-  <script type="module" src="index.js"></script>
 </html>
