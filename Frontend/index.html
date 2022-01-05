@@ -13,68 +13,45 @@
       <h1>Football guessing game</h1>
     </header>
 
-    <input class="hint" type="submit" value="I need a hint..." />
+    <main>
 
-    <input
-      class="startGameButton"
-      type="submit"
-      value="Generate random Player"
-    />
+      <button class="open-modal">Click here for Rules</button>
+     
+      <div class="modal">
+          <button class="close-modal">&times;</button>
+          
+          <p>
+            <h2>Rules: Whose Career?</h2>
+            <ul>
+              <li>Once play button is clicked, a football career summary of a retired or active football player will be presented. The player has to guess the name of the player based on the summary data provided. 
 
-    <table class="summaryTable" id="youth"></table>
+              </li>
+              <li> The player has 2 minutes⏰ to correctly guess the player's name</li>
+              
+            </ul>
+            
+          </p>
+        </div>
+      </div>
+      <div class="overlay hidden"></div>
 
-    <table class="summaryTable" id="senior"></table>
+      <button class="hint" type="submit"> I need a hint... </button>
 
-    <table class="summaryTable" id="national"></table>
+      <button class="startGameButton"
+      type="submit"> Generate random Player </button>
+    
 
-    <table class="summaryTable" id="management"></table>
+      <table class="summaryTable hidden" id="youth"></table>
 
-    <table class="summaryTable" id="hint"></table>
+      <table class="summaryTable hidden" id="senior"></table>
 
-    <!-- <table class="summaryTable" id="youth2"></table>
-    <br />
-    <table class="summaryTable" id="senior2"></table>
-    <br />
-    <table class="summaryTable" id="national2"></table>
-    <br />
-    <table class="summaryTable" id="management2"></table>
-    <br /> -->
+      <table class="summaryTable hidden" id="national"></table>
 
-    <!-- <table class="practise">
-      <thead>
-        <tr>
-          <th>
-            <img
-              src="/clubEmojis/Brighton & Hove Albion.png"
-              alt="Couldn't display"
-            />
-            One
-          </th>
-          <th id="thTwo">Two</th>
-          <th>Three</th>
-          <th>Four</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>some emoji</td>
-          <td>some</td>
-          <td>some</td>
-          <td>some</td>
-        </tr>
-        <tr>
-          <td>some</td>
-          <td>some</td>
-          <td>some</td>
-          <td>some</td>
-        </tr>
-        <tr>
-          <td>some</td>
-          <td>some</td>
-          <td>some</td>
-          <td>some</td>
-        </tr>
-      </tbody>
-    </table> -->
+      <table class="summaryTable hidden" id="management"></table>
+
+      <table class="summaryTable hidden" id="hint"></table>
+
+     
+    </main>
   </body>
 </html>

@@ -1,15 +1,10 @@
 const player = `Alan Shearer
-CBE DL
-
-Shearer in October 2008
 
 Personal information
+Full name Alan Shearer
 Born 13 August 1970 (age 51)
-Newcastle upon Tyne, England
-Occupation Football pundit, footballer
+Place of birth Newcastle upon Tyne, England
 Height 6 ft 0 in (1.83 m)[1]
-Spouse(s) Lainya Shearer
-Association football career
 Position(s) Striker
 Youth career
  Wallsend Boys Club

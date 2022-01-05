@@ -1,11 +1,53 @@
-// npm init
-// npm install
-
 ("use strict");
 
-import { playerDatabase } from "./playersDatabase.js";
+/////////////////// Creating summary table node lists
+
+const summaryTableNodeList = document.querySelectorAll(".summaryTable");
+const hintTableOnly = document.querySelector("#hint");
+
+/////////////////////////////////////////Rules button and modal window
+
+const modal = document.querySelector(".modal");
+
+const overlay = document.querySelector(".overlay");
+
+const btnCloseModal = document.querySelector(".close-modal");
+
+const btnOpenModal = document.querySelector(".open-modal");
+
+const openModal = function () {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
+
+const closeModal = function () {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
+
+btnOpenModal.addEventListener("click", openModal);
+overlay.addEventListener("click", closeModal);
+btnCloseModal.addEventListener("click", closeModal);
+
+// Handling key event////////////////////////////////////////////
+
+document.addEventListener("keydown", function (event) {
+  console.log("key pressed");
+  console.log(event.key); // console logging the object, its the keyboard event. Read the .key property of the event object. JSON
+
+  if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+    console.log("Escape was pressed to exit modal window");
+    closeModal(); // close modal now needs to be called, within if code block so won't execute by itself like in event listener handling function
+  }
+
+  // && checking that the modal windows is open (! hidden), so that escape key will work
+});
+
+///////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////// Read File to player database array
+
+import { playerDatabase } from "./playersDatabase.js";
 
 const generatePlayerDatabaseArray = function (playerDatabase) {
   let playerDatabaseArray = playerDatabase.split("\n");
@@ -34,13 +76,20 @@ document
 
     let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-    // random_player = "Brad Friedel"; // BUG // Ugo Ehiogu
+    random_player = "Alan Shearer"; // BUG // Ugo Ehiogu
 
     console.log(random_player);
 
-    //////////////////////////////Async from this point
+    //////////////////////////////Async from this point///////////////////////////////////////////////////////////
 
     import(`./summariesJS/${random_player}.js`).then((player) => {
+      ///////////// Unhide summary tables
+
+      for (let i = 0; i < summaryTableNodeList.length - 1; i++) {
+        // all table except hint table
+        summaryTableNodeList[i].classList.remove("hidden");
+      }
+
       ///////////////////////////////////////// Generate chosen player summary
 
       let chosenPlayerSummary = player.player;
@@ -356,11 +405,11 @@ document
             break;
           case "hint":
             summaryTable =
-              "<table><thead><tr><th> Personal information </th></tr><tr><th> Item </th> <th> Details </th></tr></thead><tbody>";
+              "<table><thead><tr><th colspan='2'> Personal information </th></tr><tr><th> Item </th> <th> Details </th></tr></thead><tbody>";
 
             for (let i = 0; i < 4; i++) {
               let itemHeader = [
-                "Data of birth",
+                "Date of birth",
                 "Place of birth",
                 "Height",
                 "Position(s)",
@@ -437,8 +486,16 @@ document
         managementClubs
       );
 
-      const hintTable = generateSummaryTables(hint, [], [], [], [], hintItems);
+      document.querySelector(".hint").addEventListener("click", function () {
+        hintTableOnly.classList.remove("hidden");
+        const hintTable = generateSummaryTables(
+          hint,
+          [],
+          [],
+          [],
+          [],
+          hintItems
+        );
+      });
     });
-
-    // document.querySelector(".hint").addEventListener("click", function () {});
   });
