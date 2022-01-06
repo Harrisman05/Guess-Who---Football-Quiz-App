@@ -43,7 +43,7 @@ img {
   width: 200px;
   display: none;
   margin: 0px auto 20px auto;
-  border: red 5px solid;
+  border: red 5px dotted;
 }
 
 .practise {
@@ -52,6 +52,10 @@ img {
   border: 5px rgba(179, 141, 179, 0.637) solid;
   padding: 20px;
   background-color: rgba(128, 128, 128, 0.308);
+}
+
+.resetButton {
+  background-color: rgb(209, 14, 14);
 }
 
 table {

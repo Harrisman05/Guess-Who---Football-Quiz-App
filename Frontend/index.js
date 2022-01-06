@@ -3,10 +3,17 @@
 /////////////////// Creating summary table node lists
 
 const summaryTableNodeList = document.querySelectorAll(".summaryTable");
+
+const youthTableHTML = document.querySelector("#youth");
+
+////////////////// targetting classes in the html markup
+
 const hintTableOnly = document.querySelector("#hint");
+const hintButton = document.querySelector(".hintButton");
 
 const guessBox = document.querySelector(".playerGuess");
-const hintButton = document.querySelector(".hintButton");
+
+const resetButton = document.querySelector(".resetButton");
 
 /////////////////////////////////////////Rules button and modal window
 
@@ -82,7 +89,7 @@ document
 
     let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-    random_player = "Alan Shearer"; // BUG // Ugo Ehiogu
+    // random_player = "Alan Shearer"; // BUG // Ugo Ehiogu
 
     console.log(random_player);
 
@@ -496,16 +503,29 @@ document
         managementClubs
       );
 
-      document.querySelector(".hint").addEventListener("click", function () {
-        hintTableOnly.classList.remove("hidden");
-        const hintTable = generateSummaryTables(
-          hint,
-          [],
-          [],
-          [],
-          [],
-          hintItems
-        );
-      });
+      document
+        .querySelector(".hintButton")
+        .addEventListener("click", function () {
+          hintTableOnly.classList.remove("hidden");
+          const hintTable = generateSummaryTables(
+            hint,
+            [],
+            [],
+            [],
+            [],
+            hintItems
+          );
+          hintButton.style.display = "none";
+        });
+
+      document
+        .querySelector(".resetButton")
+        .addEventListener("click", function () {
+          for (let i = 0; i < summaryTableNodeList.length; i++) {
+            summaryTableNodeList[i].classList.add("hidden");
+          }
+          guessBox.style.display = "none";
+          hintButton.style.display = "none";
+        });
     });
   });
