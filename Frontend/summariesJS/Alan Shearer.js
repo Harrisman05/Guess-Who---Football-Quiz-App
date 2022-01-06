@@ -2,7 +2,7 @@ const player = `Alan Shearer
 
 Personal information
 Full name Alan Shearer
-Born 13 August 1970 (age 51)
+Date of birth 13 August 1970 (age 51)
 Place of birth Newcastle upon Tyne, England
 Height 6 ft 0 in (1.83 m)[1]
 Position(s) Striker

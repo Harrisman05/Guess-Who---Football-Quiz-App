@@ -8,6 +8,14 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+button {
+  padding: 10px;
+  width: 200px;
+  display: block;
+  margin: 0px auto 20px auto;
+  cursor: pointer;
+}
+
 h1 {
   color: white;
   width: 500px;
@@ -19,18 +27,23 @@ h1 {
   display: none;
 }
 
-button {
-  padding: 10px;
-  width: 200px;
-  display: block;
-  margin: 0px auto 20px auto;
-  cursor: pointer;
+.hintButton {
+  background-color: gold;
+  display: none;
 }
 
 img {
   margin-left: 5px;
   position: relative;
   top: 3px;
+}
+
+.playerGuess {
+  padding: 10px;
+  width: 200px;
+  display: none;
+  margin: 0px auto 20px auto;
+  border: red 5px solid;
 }
 
 .practise {
@@ -75,6 +88,10 @@ th {
   text-align: center;
 }
 
+.startGameButton {
+  background-color: rgba(15, 209, 15, 0.575);
+}
+
 /* #youth {
   position: relative;
 }
@@ -96,7 +113,7 @@ th {
   right: 50px;
 } */
 
-.modal {
+.rulesModalWindow {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -109,7 +126,7 @@ th {
   z-index: 10;
 }
 
-.close-modal {
+.rulesCloseModal {
   position: absolute;
   top: 0.1rem;
   right: 0.8rem;
@@ -124,7 +141,7 @@ th {
   width: auto;
 }
 
-.overlay {
+.rulesModalOverlay {
   position: absolute;
   top: 0;
   left: 0;

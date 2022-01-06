@@ -15,10 +15,10 @@
 
     <main>
 
-      <button class="open-modal">Click here for Rules</button>
+      <button class="rulesOpenModal">Click here for Rules</button>
      
-      <div class="modal">
-          <button class="close-modal">&times;</button>
+      <div class="rulesModalWindow hidden"> <!-- hidden -->
+          <button class="rulesCloseModal">&times;</button>
           
           <p>
             <h2>Rules: Whose Career?</h2>
@@ -27,18 +27,17 @@
 
               </li>
               <li> The player has 2 minutes⏰ to correctly guess the player's name</li>
+              <li> Using a hint will deduct your timer by 30 seconds</li>
               
             </ul>
             
           </p>
         </div>
       </div>
-      <div class="overlay hidden"></div>
-
-      <button class="hint" type="submit"> I need a hint... </button>
+      <div class="rulesModalOverlay hidden"></div>
 
       <button class="startGameButton"
-      type="submit"> Generate random Player </button>
+      type="submit"> Generate Player </button>
     
 
       <table class="summaryTable hidden" id="youth"></table>
@@ -50,6 +49,10 @@
       <table class="summaryTable hidden" id="management"></table>
 
       <table class="summaryTable hidden" id="hint"></table>
+
+      <button class="hintButton" type="submit"> I need a hint... </button>
+
+      <input type="text" class="playerGuess" placeholder="Type guess here...">
 
      
     </main>

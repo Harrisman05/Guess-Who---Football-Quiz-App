@@ -5,28 +5,31 @@
 const summaryTableNodeList = document.querySelectorAll(".summaryTable");
 const hintTableOnly = document.querySelector("#hint");
 
+const guessBox = document.querySelector(".playerGuess");
+const hintButton = document.querySelector(".hintButton");
+
 /////////////////////////////////////////Rules button and modal window
 
-const modal = document.querySelector(".modal");
+const rulesModalWindow = document.querySelector(".rulesModalWindow");
 
-const overlay = document.querySelector(".overlay");
+const rulesModalOverlay = document.querySelector(".rulesModalOverlay");
 
-const btnCloseModal = document.querySelector(".close-modal");
+const btnCloseModal = document.querySelector(".rulesCloseModal");
 
-const btnOpenModal = document.querySelector(".open-modal");
+const btnOpenModal = document.querySelector(".rulesOpenModal");
 
 const openModal = function () {
-  modal.classList.remove("hidden");
-  overlay.classList.remove("hidden");
+  rulesModalWindow.classList.remove("hidden");
+  rulesModalOverlay.classList.remove("hidden");
 };
 
 const closeModal = function () {
-  modal.classList.add("hidden");
-  overlay.classList.add("hidden");
+  rulesModalWindow.classList.add("hidden");
+  rulesModalOverlay.classList.add("hidden");
 };
 
 btnOpenModal.addEventListener("click", openModal);
-overlay.addEventListener("click", closeModal);
+rulesModalOverlay.addEventListener("click", closeModal);
 btnCloseModal.addEventListener("click", closeModal);
 
 // Handling key event////////////////////////////////////////////
@@ -35,7 +38,10 @@ document.addEventListener("keydown", function (event) {
   console.log("key pressed");
   console.log(event.key); // console logging the object, its the keyboard event. Read the .key property of the event object. JSON
 
-  if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+  if (
+    event.key === "Escape" &&
+    !rulesModalWindow.classList.contains("hidden")
+  ) {
     console.log("Escape was pressed to exit modal window");
     closeModal(); // close modal now needs to be called, within if code block so won't execute by itself like in event listener handling function
   }
@@ -89,6 +95,10 @@ document
         // all table except hint table
         summaryTableNodeList[i].classList.remove("hidden");
       }
+
+      // unhide input field
+      guessBox.style.display = "block";
+      hintButton.style.display = "block";
 
       ///////////////////////////////////////// Generate chosen player summary
 
