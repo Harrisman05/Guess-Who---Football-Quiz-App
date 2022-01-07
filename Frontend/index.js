@@ -58,6 +58,11 @@ document.addEventListener("keydown", function (event) {
   // && checking that the modal windows is open (! hidden), so that escape key will work
 });
 
+const wipeTables = function () {
+  document.querySelector("#national").innerHTML = "";
+  document.querySelector("#management").innerHTML = "";
+};
+
 ///////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////// Read File to player database array
@@ -91,17 +96,21 @@ document
 
     let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-    // random_player = "Kevin Davies"; // "Garry Flitcroft"; // "Alan Shearer"; // BUG // Ugo Ehiogu
+    // random_player = "Ashley Young"; // "Garry Flitcroft"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
     console.log(random_player);
 
     //////////////////////////////Async from this point///////////////////////////////////////////////////////////
 
     import(`./summariesJS/${random_player}.js`).then((player) => {
+      ///////////// Wipe summary tables
+
+      wipeTables();
+
       ///////////// Unhide summary tables
 
-      for (let i = 0; i < summaryTableNodeList.length - 1; i++) {
-        // all table except hint table
+      for (let i = 0; i < summaryTableNodeList.length; i++) {
+        console.log(summaryTableNodeList);
         summaryTableNodeList[i].classList.remove("hidden");
       }
 
@@ -343,10 +352,6 @@ document
 
       generateManagementHTMLarrays(managementPeriod);
 
-      // console.log(managementClubs);
-      // console.log(managementYears);
-      // console.log(managementPeriod);
-
       //////////////////////////////////////// Personal info
 
       let hintItems = [];
@@ -526,6 +531,9 @@ document
         for (let i = 0; i < summaryTableNodeList.length; i++) {
           summaryTableNodeList[i].classList.add("hidden");
         }
+
+        wipeTables();
+
         guessBox.style.display = "none";
         guessSubmit.style.display = "none";
         hintButton.style.display = "none";
