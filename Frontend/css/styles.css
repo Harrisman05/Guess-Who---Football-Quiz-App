@@ -105,26 +105,28 @@ th {
   background-color: rgba(15, 209, 15, 0.575);
 }
 
-/* #youth {
-  position: relative;
+.tablesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: rgba(62, 92, 28, 0.178);
+  gap: 2rem;
+}
+
+#youth {
 }
 
 #senior {
-  position: relative;
-  right: 50px;
 }
 
 #national {
-  position: relative;
-  bottom: 50px;
-  left: 50px;
 }
 
 #management {
-  position: relative;
-  bottom: 50px;
-  right: 50px;
-} */
+}
+
+#hint {
+}
 
 .rulesModalWindow {
   position: absolute;

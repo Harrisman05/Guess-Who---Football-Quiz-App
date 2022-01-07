@@ -96,7 +96,7 @@ document
 
     let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-    // random_player = "Ashley Young"; // "Garry Flitcroft"; // "Alan Shearer"; // BUG // Ugo Ehiogu
+    random_player = "Alan Shearer"; // "Garry Flitcroft"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
     console.log(random_player);
 
@@ -119,7 +119,7 @@ document
       hintButton.style.display = "block";
       guessSubmit.style.display = "block";
       guessBox.style.display = "block";
-      hintTableOnly.style.display = "none";
+      // hintTableOnly.style.display = "none"; BUG unhide hint table for flexbox testing
 
       ///////////////////////////////////////// Generate chosen player summary
 
@@ -512,6 +512,13 @@ document
         managementYears,
         managementClubs
       );
+
+      //////////////////// BUG Remove after Flexbox testing
+
+      hintTableOnly.classList.remove("hidden");
+      const hintTable = generateSummaryTables(hint, [], [], [], [], hintItems);
+
+      /////////////////////// BUG
 
       hintButton.addEventListener("click", function () {
         hintTableOnly.classList.remove("hidden");
