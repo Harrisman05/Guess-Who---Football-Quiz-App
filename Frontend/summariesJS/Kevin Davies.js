@@ -8,7 +8,7 @@ Place of birth Sheffield, England
 Height 6 ft 0 in (1.83 m)[1]
 Position(s) Striker
 Youth career
- Sheffield United
+Sheffield United
 –1993 Chesterfield
 Senior career*
 Years Team Apps (Gls)

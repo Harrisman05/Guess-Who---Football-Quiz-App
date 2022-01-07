@@ -8,7 +8,7 @@ Place of birth Barking, England
 Height 6 ft 2 in (1.87 m)[3]
 Position(s) Centre-back
 Youth career
- Senrab
+Senrab
 1991–1995 West Ham United
 1995–1998 Chelsea
 Senior career*

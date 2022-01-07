@@ -54,10 +54,12 @@
 
       <table class="summaryTable hidden" id="hint"></table>
 
-      <button class="hintButton" type="submit"> I need a hint... </button>
-
-      <input type="text" class="playerGuess" placeholder="Type guess here...">
-
+      <button class="hintButton hidden" type="submit"> I need a hint... </button>
+      
+      <form action="" class="formMakeGuess"> <!-- for required to work, input and button needs to be wrapped inside form tag-->
+        <input type="text" class="playerGuessBox" placeholder="Type guess here..." required>
+        <button type="submit" class="playerGuessSubmit"> Click here to submit guess </button>
+      </form>
      
     </main>
   </body>

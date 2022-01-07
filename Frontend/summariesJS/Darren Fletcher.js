@@ -10,9 +10,9 @@ Position(s) Midfielder
 Club information
 Current team Manchester United (Technical director)
 Youth career
- Hutchison Vale
- Tynecastle Boys Club
- Celtic Boys Club
+Hutchison Vale
+Tynecastle Boys Club
+Celtic Boys Club
 1995–2003 Manchester United
 Senior career*
 Years Team Apps (Gls)

@@ -1,4 +1,4 @@
-const player = `Aaron Hughes
+const aaronHughes = `Aaron Hughes
 MBE
 Hughes lining up for Northern Ireland in 2012
 
@@ -22,10 +22,12 @@ Years Team Apps (Gls)
 2017–2019 Heart of Midlothian 32 (0)
 Total  525 (7)
 National team
-Northern Ireland U16 2 (0)
-Northern Ireland U18 5 (1)
+ Northern Ireland U16 2 (0)
+ Northern Ireland U18 5 (1)
 1997–1998 Northern Ireland B 2 (0)
 1998–2018 Northern Ireland 112 (1)
 * Senior club appearances and goals counted for the domestic league only`;
 
-export { player };
+console.log(aaronHughes);
+
+export { aaronHughes };

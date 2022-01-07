@@ -6,7 +6,7 @@ Place of birth Bath, England
 Height 5 ft 10 in (1.78 m)[1]
 Position(s) Full-back
 Youth career
- Bath City
+Bath City
 Senior career*
 Years Team Apps (Gls)
 1988–1989 Bath City 11 (1)

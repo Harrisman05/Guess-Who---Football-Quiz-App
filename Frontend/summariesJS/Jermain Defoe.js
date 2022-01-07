@@ -12,7 +12,7 @@ Club information
 Current team Rangers
 Number 9
 Youth career
- Senrab
+Senrab
 1997–1999 Charlton Athletic
 1999 West Ham United
 Senior career*

@@ -8,8 +8,8 @@ Place of birth Kirkby, England
 Height 5 ft 7 in (1.70 m)[3]
 Position(s) Left-back
 Youth career
- Everton
- Wigan Athletic
+Everton
+Wigan Athletic
 Senior career*
 Years Team Apps (Gls)
 2002–2007 Wigan Athletic 145 (4)

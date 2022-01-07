@@ -3,9 +3,10 @@ Personal information
 Full name Garry William Flitcroft
 Date of birth 6 November 1972 (age 49)
 Place of birth Bolton, Lancashire, England
+Height 6 ft 0 in (1.83 m)
 Position(s) Midfielder
 Youth career
- Manchester City
+Manchester City
 Senior career*
 Years Team Apps (Gls)
 1991–1996 Manchester City 116 (13)

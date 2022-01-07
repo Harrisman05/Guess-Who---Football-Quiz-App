@@ -29,7 +29,6 @@ h1 {
 
 .hintButton {
   background-color: gold;
-  display: none;
 }
 
 img {
@@ -38,12 +37,22 @@ img {
   top: 3px;
 }
 
-.playerGuess {
+.playerGuessBox {
   padding: 10px;
   width: 200px;
   display: none;
   margin: 0px auto 20px auto;
   border: red 5px dotted;
+}
+
+.playerGuessSubmit {
+  background-color: #1c89ff;
+  border-radius: 50px;
+  color: rgb(223, 223, 223);
+  padding: 10px;
+  width: 200px;
+  display: none;
+  margin: 0px auto 20px auto;
 }
 
 .practise {

@@ -11,8 +11,8 @@ Position(s) Defender, midfielder
 Club information
 Current team England (manager)
 Youth career
- Southampton
- Crystal Palace
+Southampton
+Crystal Palace
 Senior career*
 Years Team Apps (Gls)
 1988–1995 Crystal Palace 152 (15)

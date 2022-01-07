@@ -11,7 +11,9 @@ const youthTableHTML = document.querySelector("#youth");
 const hintTableOnly = document.querySelector("#hint");
 const hintButton = document.querySelector(".hintButton");
 
-const guessBox = document.querySelector(".playerGuess");
+const guessBox = document.querySelector(".playerGuessBox");
+const guessSubmit = document.querySelector(".playerGuessSubmit");
+const formMakeGuess = document.querySelector(".formMakeGuess");
 
 const resetButton = document.querySelector(".resetButton");
 
@@ -89,7 +91,7 @@ document
 
     let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-    // random_player = "Alan Shearer"; // BUG // Ugo Ehiogu
+    // random_player = "Kevin Davies"; // "Garry Flitcroft"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
     console.log(random_player);
 
@@ -104,8 +106,11 @@ document
       }
 
       // unhide input field
-      guessBox.style.display = "block";
+
       hintButton.style.display = "block";
+      guessSubmit.style.display = "block";
+      guessBox.style.display = "block";
+      hintTableOnly.style.display = "none";
 
       ///////////////////////////////////////// Generate chosen player summary
 
@@ -241,9 +246,9 @@ document
 
       generateYouthHTMLarrays(youthPeriod);
 
-      // console.log(youthYears);
-      // console.log(youthClubs);
-      // console.log(youthPeriod);
+      console.log(youthYears);
+      console.log(youthClubs);
+      console.log(youthPeriod);
 
       //   //////////////////////////////////// Senior Career ///////////////////////////////////////////////////////////
 
@@ -373,7 +378,7 @@ document
           let rejoinedHint = hintSplit.join(" ");
           hintItems.push(rejoinedHint);
         }
-
+        console.log(personalInfo);
         for (let i = 2; i < 4; i++) {
           personalInfo[i];
           let hintSplit = personalInfo[i].split(" ");
@@ -503,29 +508,34 @@ document
         managementClubs
       );
 
-      document
-        .querySelector(".hintButton")
-        .addEventListener("click", function () {
-          hintTableOnly.classList.remove("hidden");
-          const hintTable = generateSummaryTables(
-            hint,
-            [],
-            [],
-            [],
-            [],
-            hintItems
-          );
-          hintButton.style.display = "none";
-        });
+      hintButton.addEventListener("click", function () {
+        hintTableOnly.classList.remove("hidden");
+        const hintTable = generateSummaryTables(
+          hint,
+          [],
+          [],
+          [],
+          [],
+          hintItems
+        );
+        hintButton.style.display = "none";
+        hintTableOnly.style.display = "table";
+      });
 
-      document
-        .querySelector(".resetButton")
-        .addEventListener("click", function () {
-          for (let i = 0; i < summaryTableNodeList.length; i++) {
-            summaryTableNodeList[i].classList.add("hidden");
-          }
-          guessBox.style.display = "none";
-          hintButton.style.display = "none";
-        });
+      resetButton.addEventListener("click", function () {
+        for (let i = 0; i < summaryTableNodeList.length; i++) {
+          summaryTableNodeList[i].classList.add("hidden");
+        }
+        guessBox.style.display = "none";
+        guessSubmit.style.display = "none";
+        hintButton.style.display = "none";
+        hintTableOnly.style.display = "none";
+      });
+
+      formMakeGuess.addEventListener("submit", (e) => {
+        console.log(guessBox.value);
+        console.log("submit actioned");
+        // prevents the form from actually submitting
+      });
     });
   });

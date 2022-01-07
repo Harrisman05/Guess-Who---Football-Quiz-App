@@ -8,7 +8,7 @@ Place of birth Chester, England
 Height 1.75 m (5 ft 9 in)[2]
 Position(s) Central midfielder
 Youth career
- Crewe Alexandra
+Crewe Alexandra
 Senior career*
 Years Team Apps (Gls)
 1993–1997 Crewe Alexandra 134 (27)

@@ -8,7 +8,7 @@ Place of birth Ashton-under-Lyne, Lancashire, England
 Height 5 ft 4 in (1.63 m)
 Position(s) Defender
 Youth career
- Blackpool
+Blackpool
 Senior career*
 Years Team Apps (Gls)
 1989–1991 Blackpool 98 (0)

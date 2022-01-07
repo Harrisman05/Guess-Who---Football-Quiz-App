@@ -11,8 +11,8 @@ Position(s) Striker
 Club information
 Current team Queens Park Rangers (director of football)
 Youth career
- Viking Sports
- Southall
+Viking Sports
+Southall
 Senior career*
 Years Team Apps (Gls)
 1984–1986 Southall  

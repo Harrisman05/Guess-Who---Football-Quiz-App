@@ -8,9 +8,9 @@ Place of birth Ballyboden, Dublin, Ireland
 Height 1.77 m (5 ft 9)
 Position(s) Winger
 Youth career
- Leicester Celtic
- Lourdes Celtic
- St. Kevin's Boys
+Leicester Celtic
+Lourdes Celtic
+St. Kevin's Boys
 Senior career*
 Years Team Apps (Gls)
 1996–2003 Blackburn Rovers 185 (27)

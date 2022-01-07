@@ -8,7 +8,7 @@ Place of birth Mikkeli, Finland
 Height 1.91 m (6 ft 3 in)[2]
 Position(s) Goalkeeper
 Youth career
- MP
+MP
 Senior career*
 Years Team Apps (Gls)
 1992–1995 MP 64 (0)

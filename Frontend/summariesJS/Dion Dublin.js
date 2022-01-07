@@ -12,7 +12,7 @@ Club information
 Current team Cambridge United
 (Club Director)
 Youth career
- Wigston Fields
+Wigston Fields
 1985–1988 Norwich City
 Senior career*
 Years Team Apps (Gls)

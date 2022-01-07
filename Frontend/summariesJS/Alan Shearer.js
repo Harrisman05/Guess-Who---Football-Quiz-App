@@ -7,7 +7,7 @@ Place of birth Newcastle upon Tyne, England
 Height 6 ft 0 in (1.83 m)[1]
 Position(s) Striker
 Youth career
- Wallsend Boys Club
+Wallsend Boys Club
 1986–1988 Southampton
 Senior career*
 Years Team Apps (Gls)
