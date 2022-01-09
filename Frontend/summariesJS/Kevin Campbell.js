@@ -3,6 +3,7 @@ Personal information
 Full name Kevin Joseph Campbell
 Date of birth 4 February 1970 (age 51)
 Place of birth Lambeth, London, England
+Height 6 ft 0 in (1.83 m)
 Position(s) Striker
 Youth career
 1985–1988 Arsenal

@@ -1,7 +1,9 @@
 const player = `Peter Atherton
 Personal information
+Full name Peter Atherton
 Date of birth 6 April 1970 (age 51)
 Place of birth Wigan, England
+Height 5 ft 10 in (1.77m)
 Position(s) Defender / midfielder
 Club information
 Current team Bolton Wanderers (assistant manager)

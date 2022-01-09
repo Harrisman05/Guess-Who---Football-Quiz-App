@@ -99,6 +99,19 @@ th {
   text-align: center;
 }
 
+.timerText {
+  background-color: burlywood;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.25rem;
+  width: 300px;
+  margin: 20px auto 20px auto;
+}
+
+.timer {
+  font-weight: 700;
+}
+
 .summaryTable > thead > tr:first-child > th {
   color: rgb(87, 169, 236);
   font-size: 30px;

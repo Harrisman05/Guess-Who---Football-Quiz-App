@@ -18,9 +18,58 @@ const formMakeGuess = document.querySelector(".formMakeGuess");
 
 const resetButton = document.querySelector(".resetButton");
 
+///////////////////////////////////////////////////////////////
+
 const turnCounterNumber = document.querySelector(".turnCounterNumber");
+
 let turnCount = 0;
+
+const resetTurnCount = function () {
+  turnCount = 0;
+  turnCounterNumber.textContent = `${turnCount}/10`;
+};
+
+///////////////////////////////////////////////////////////////
+
 const gameOverMessage = document.querySelector(".gameOverMessage");
+
+const labelTimer = document.querySelector(".timer");
+let timer; // placeholder for checking if timers exist
+
+const startTimer = function () {
+  const tick = function () {
+    const min = String(Math.floor(time / 60)).padStart(2, 0); // converting time into mins, math.floor to remove decimals, converted to string so padStart can add a 0 at the start of the number
+    const sec = String(time % 60).padStart(2, 0); // remainder of time / 60 is the seconds left
+
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // When timer reaches 0 seconds, stop timer and log out user
+
+    if (time === 0) {
+      clearInterval(timer);
+      console.log("Turn has ended");
+      startGameButton.click();
+    }
+
+    // Decrease 1 second
+    time--;
+  };
+
+  // Set time to 2 minutes
+  let time = 30;
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000); // callback function executed every 1000ms (1 second)
+  // In each callback call, print the remaining time to UI
+  return timer;
+};
+
+const resetTimer = function () {
+  clearInterval(timer);
+  labelTimer.textContent = `00:00`;
+  console.log("timer cleared");
+};
 
 /////////////////////////////////////////Rules button and modal window
 
@@ -99,13 +148,18 @@ startGameButton.addEventListener("click", function () {
 
   let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-  // random_player = "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
+  // random_player = "Peter Atherton"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
   console.log(random_player);
 
   //////////////////////////////Async from this point///////////////////////////////////////////////////////////
 
   import(`./summariesJS/${random_player}.js`).then((player) => {
+    ///////////// Start turn timer
+
+    if (timer) clearInterval(timer); //check if there is a pre-existing timer, and delete if so
+    timer = startTimer();
+
     ///////////// Wipe summary tables
 
     wipeTables();
@@ -540,10 +594,9 @@ startGameButton.addEventListener("click", function () {
         summaryTableNodeList[i].classList.add("hidden");
       }
 
+      resetTurnCount();
+      resetTimer();
       wipeTables();
-
-      turnCount = 0;
-      turnCounterNumber.textContent = `${turnCount}/10`;
 
       guessBox.style.display = "none";
       guessSubmit.style.display = "none";
@@ -571,8 +624,10 @@ startGameButton.addEventListener("click", function () {
         userPlayerGuess === correctPlayerGuessNormalised
       ) {
         console.log("That is a correct guess");
+        startGameButton.click();
       } else {
         console.log("That is an incorrect guess");
+        startGameButton.click();
       }
       console.log("submit actioned");
 
@@ -584,7 +639,7 @@ startGameButton.addEventListener("click", function () {
         guessSubmit.style.display = "none";
       }
 
-      e.preventDefault();
+      // e.preventDefault();
       // prevents the form from actually submitting
     });
   });
