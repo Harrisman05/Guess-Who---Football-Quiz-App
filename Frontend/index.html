@@ -9,7 +9,7 @@
     <script defer type="module" src="index.js"></script>
   </head>
   <body>
-    <header class="game">
+    <header class="gameHeader">
       <h1>Football guessing game</h1>
     </header>
 
@@ -42,6 +42,14 @@
       type="submit"> Generate Player </button>
 
       <button class="resetButton">Reset Here</button>
+
+      <div class="turnCounterContainer">
+
+        <div class="turnCounterNumber">0/10</div>
+
+        <div class="gameOverMessage"> Game Over, please press reset in order to start another game</div>
+
+      </div>
     
       <div class="tablesContainer">
 
@@ -60,7 +68,7 @@
       <button class="hintButton hidden" type="submit"> I need a hint... </button>
       
       <form action="" class="formMakeGuess"> <!-- for required to work, input and button needs to be wrapped inside form tag-->
-        <input type="text" class="playerGuessBox" placeholder="Type guess here..." required>
+        <input type="text" class="playerGuessBox" spellcheck="false" placeholder="Type guess here..." required>
         <button type="submit" class="playerGuessSubmit"> Click here to submit guess </button>
       </form>
      
