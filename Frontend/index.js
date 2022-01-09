@@ -23,6 +23,7 @@ const resetButton = document.querySelector(".resetButton");
 const turnCounterNumber = document.querySelector(".turnCounterNumber");
 
 let turnCount = 0;
+let numClick = 0;
 
 const resetTurnCount = function () {
   turnCount = 0;
@@ -30,6 +31,9 @@ const resetTurnCount = function () {
 };
 
 ///////////////////////////////////////////////////////////////
+
+let allCorrectPlayers = [];
+let allUserGuesses = [];
 
 const gameOverMessage = document.querySelector(".gameOverMessage");
 
@@ -56,7 +60,7 @@ const startTimer = function () {
   };
 
   // Set time to 2 minutes
-  let time = 30;
+  let time = 10000;
 
   // Call the timer every second
   tick();
@@ -98,14 +102,14 @@ btnCloseModal.addEventListener("click", closeModal);
 // Handling key event////////////////////////////////////////////
 
 document.addEventListener("keydown", function (event) {
-  console.log("key pressed");
-  console.log(event.key); // console logging the object, its the keyboard event. Read the .key property of the event object. JSON
+  // console.log("key pressed");
+  // console.log(event.key); // console logging the object, its the keyboard event. Read the .key property of the event object. JSON
 
   if (
     event.key === "Escape" &&
     !rulesModalWindow.classList.contains("hidden")
   ) {
-    console.log("Escape was pressed to exit modal window");
+    // console.log("Escape was pressed to exit modal window");
     closeModal(); // close modal now needs to be called, within if code block so won't execute by itself like in event listener handling function
   }
 
@@ -148,13 +152,17 @@ startGameButton.addEventListener("click", function () {
 
   let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-  // random_player = "Peter Atherton"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
+  // random_player = "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
   console.log(random_player);
 
   //////////////////////////////Async from this point///////////////////////////////////////////////////////////
 
   import(`./summariesJS/${random_player}.js`).then((player) => {
+    ///////////// unhighlight generate new player
+
+    startGameButton.style.border = "none";
+
     ///////////// Start turn timer
 
     if (timer) clearInterval(timer); //check if there is a pre-existing timer, and delete if so
@@ -173,7 +181,7 @@ startGameButton.addEventListener("click", function () {
     ///////////// Unhide summary tables
 
     for (let i = 0; i < summaryTableNodeList.length; i++) {
-      console.log(summaryTableNodeList);
+      // console.log(summaryTableNodeList);
       summaryTableNodeList[i].classList.remove("hidden");
     }
 
@@ -318,9 +326,9 @@ startGameButton.addEventListener("click", function () {
 
     generateYouthHTMLarrays(youthPeriod);
 
-    console.log(youthYears);
-    console.log(youthClubs);
-    console.log(youthPeriod);
+    // console.log(youthYears);
+    // console.log(youthClubs);
+    // console.log(youthPeriod);
 
     //   //////////////////////////////////// Senior Career ///////////////////////////////////////////////////////////
 
@@ -420,8 +428,6 @@ startGameButton.addEventListener("click", function () {
     let hintItems = [];
 
     const generatePersonalInfoarrays = function (personalInfo) {
-      console.log(personalInfo);
-
       for (let i = 0; i < personalInfo.length; i++) {
         if (personalInfo.includes("Personal information")) {
           personalInfo.shift();
@@ -446,7 +452,7 @@ startGameButton.addEventListener("click", function () {
         let rejoinedHint = hintSplit.join(" ");
         hintItems.push(rejoinedHint);
       }
-      console.log(personalInfo);
+
       for (let i = 2; i < 4; i++) {
         personalInfo[i];
         let hintSplit = personalInfo[i].split(" ");
@@ -606,41 +612,50 @@ startGameButton.addEventListener("click", function () {
       gameOverMessage.style.display = "none";
     });
 
-    formMakeGuess.addEventListener("submit", (e) => {
-      let userPlayerGuess = guessBox.value;
-      let correctPlayerGuess = random_player;
-      let correctPlayerGuessNormalised = correctPlayerGuess
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+    guessSubmit.addEventListener(
+      "click",
+      function (e) {
+        let userPlayerGuess = guessBox.value;
+        guessBox.value = "";
 
-      console.log(userPlayerGuess + " is the user's player");
-      console.log(correctPlayerGuess + " is the correct player");
-      console.log(
-        correctPlayerGuessNormalised + " is the normalised correct player"
-      );
+        let correctPlayerGuess = random_player;
+        let correctPlayerGuessNormalised = correctPlayerGuess
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
 
-      if (
-        userPlayerGuess === correctPlayerGuess ||
-        userPlayerGuess === correctPlayerGuessNormalised
-      ) {
-        console.log("That is a correct guess");
-        startGameButton.click();
-      } else {
-        console.log("That is an incorrect guess");
-        startGameButton.click();
-      }
-      console.log("submit actioned");
+        // console.log(userPlayerGuess + " is the user's player");
+        // console.log(correctPlayerGuess + " is the correct player");
+        // console.log(
+        //   correctPlayerGuessNormalised + " is the normalised correct player"
+        // );
+        console.log(correctPlayerGuess);
+        allCorrectPlayers.push(correctPlayerGuess);
+        console.log(allCorrectPlayers);
+        allUserGuesses.push(userPlayerGuess);
+        console.log(allUserGuesses);
 
-      if (turnCount === 10) {
-        gameOverMessage.style.display = "block";
-        startGameButton.style.display = "none";
-        hintButton.style.display = "none";
-        guessBox.style.display = "none";
-        guessSubmit.style.display = "none";
-      }
+        if (
+          userPlayerGuess === correctPlayerGuess ||
+          userPlayerGuess === correctPlayerGuessNormalised
+        ) {
+          console.log("That is a correct guess");
+          startGameButton.click();
+        } else {
+          console.log("That is an incorrect guess");
+          startGameButton.click();
+        }
+        console.log("submit actioned");
 
-      // e.preventDefault();
-      // prevents the form from actually submitting
-    });
+        if (turnCount === 10) {
+          gameOverMessage.style.display = "block";
+          startGameButton.style.display = "none";
+          hintButton.style.display = "none";
+          guessBox.style.display = "none";
+          guessSubmit.style.display = "none";
+        }
+        startGameButton.style.border = "5px solid red";
+      },
+      { once: true } //maybe 3 hours to find this solution
+    );
   });
 });

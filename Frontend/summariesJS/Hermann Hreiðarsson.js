@@ -2,6 +2,7 @@ const player = `Hermann Hreiðarsson
 Hermann in 2009
 
 Personal information
+Full Name Hermann Hreiðarsson
 Date of birth 11 July 1974 (age 47)
 Place of birth Reykjavík, Iceland
 Height 1.91 m (6 ft 3 in)
