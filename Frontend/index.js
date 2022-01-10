@@ -27,9 +27,9 @@ const resetButton = document.querySelector(".resetButton");
 ///////////////////////////////////////////////////////////////
 
 const turnCounterNumber = document.querySelector(".turnCounterNumber");
+const turnCounterContainer = document.querySelector(".turnCounterContainer");
 
 let turnCount = 0;
-let numClick = 0;
 
 const resetTurnCount = function () {
   turnCount = 0;
@@ -66,7 +66,7 @@ const startTimer = function () {
   };
 
   // Set time to 2 minutes
-  let time = 3;
+  let time = 120;
 
   // Call the timer every second
   tick();
@@ -158,7 +158,8 @@ startGameButton.addEventListener("click", function () {
 
   let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-  // random_player = "Shaun Wright-Phillips"; // "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
+  // random_player = "Alan Shearer";
+  // "Shaun Wright-Phillips"; // "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
   console.log(random_player);
 
@@ -174,7 +175,7 @@ startGameButton.addEventListener("click", function () {
 
     wipeTables();
 
-    /////////////////////////////////// Update counter
+    /////////////////////////////////// Update counter and hide/unhide relevant tables
 
     turnCount++;
     console.log(turnCount);
@@ -183,6 +184,7 @@ startGameButton.addEventListener("click", function () {
 
     if (turnCount === 11) {
       resetTimer();
+      timerText.style.display = "none";
       turnCounterNumber.textContent = `10/10`;
 
       youthTableHTML.style.display = "none";
@@ -197,23 +199,18 @@ startGameButton.addEventListener("click", function () {
       hintButton.style.display = "none";
       guessBox.style.display = "none";
       guessSubmit.style.display = "none";
-    }
-
-    ///////////// Unhide summary tables
-
-    for (let i = 0; i < summaryTableNodeList.length; i++) {
-      // console.log(summaryTableNodeList);
-      summaryTableNodeList[i].classList.remove("hidden");
-    }
-
-    // unhide input field
-
-    if (turnCount !== 11) {
+    } else {
       hintButton.style.display = "block";
       guessSubmit.style.display = "block";
       guessBox.style.display = "block";
-      // timerText.style.display = "none";
       hintTableOnly.style.display = "none"; // BUG unhide hint table for flexbox testing
+      startGameButton.style.display = "none";
+      timerText.style.display = "block";
+      turnCounterContainer.style.display = "block";
+      for (let i = 0; i < summaryTableNodeList.length; i++) {
+        // console.log(summaryTableNodeList);
+        summaryTableNodeList[i].classList.remove("hidden");
+      }
     }
 
     ///////////////////////////////////////// Generate chosen player summary
@@ -509,23 +506,23 @@ startGameButton.addEventListener("click", function () {
       switch (tableID) {
         case "youth":
           summaryTable =
-            "<table><thead><tr><th colspan='2'> Youth Career </th></tr><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
+            "<table><thead><tr><th colspan='2' class='topHeader'> <span>👶</span> Youth Career <span>👶</span> </th></tr><tr><th> Years </th> <th> Youth Clubs</th></tr></thead><tbody>";
           break;
         case "senior":
           summaryTable =
-            "<table><thead><tr><th colspan='4'> Senior Career </th></tr><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
+            "<table><thead><tr><th colspan='4' class='topHeader'> <span>⚽</span> Senior Career <span>⚽</span> </th></tr><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
           break;
         case "national":
           summaryTable =
-            "<table><thead><tr><th colspan='4'> National Career </th></tr><tr><th> Years </th> <th> National Groups </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
+            "<table><thead><tr><th colspan='4' class='topHeader'> <span>🌍</span> National Career <span>🌍</span> </th></tr><tr><th> Years </th> <th> National Groups </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
           break;
         case "management":
           summaryTable =
-            "<table><thead><tr><th  colspan='2'> Management Career </th></tr><tr><th> Years </th> <th> Teams managed </th></tr></thead><tbody>";
+            "<table><thead><tr><th  colspan='2' class='topHeader'> <span>💼</span> Management Career <span>💼</span> </th></tr><tr><th> Years </th> <th> Teams managed </th></tr></thead><tbody>";
           break;
         case "hint":
           summaryTable =
-            "<table><thead><tr><th colspan='2'> Personal information </th></tr><tr><th> Item </th> <th> Details </th></tr></thead><tbody>";
+            "<table><thead><tr><th colspan='2'class='topHeader'> <span>🔐</span> Personal information <span>🔐</span> </th></tr><tr><th> Item </th> <th> Details </th></tr></thead><tbody>";
 
           for (let i = 0; i < 4; i++) {
             let itemHeader = [
@@ -580,6 +577,8 @@ startGameButton.addEventListener("click", function () {
         summaryTable += "</tbody></table>";
 
         let summaryTableHTML = document.getElementById(`${tableID}`);
+
+        console.log(summaryTableHTML.innerHTML);
 
         summaryTableHTML.innerHTML = summaryTable;
       }

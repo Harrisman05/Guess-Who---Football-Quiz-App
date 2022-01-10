@@ -3,8 +3,9 @@
 }
 
 body {
-  background-color: #121212;
-  font-size: 18px;
+  /* background-color: #121212; */
+  background-color: #f1bfa9;
+  font-size: 1.2vw;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -14,6 +15,7 @@ button {
   display: block;
   margin: 0px auto 20px auto;
   cursor: pointer;
+  font-size: 1.2vw;
 }
 
 .gameOverMessage {
@@ -22,7 +24,7 @@ button {
 
 h1 {
   color: white;
-  width: 500px;
+  width: 1800px;
   margin: auto;
   margin-bottom: 50px;
 }
@@ -36,9 +38,11 @@ h1 {
 }
 
 img {
-  margin-left: 5px;
+  margin-left: 0.5vw;
   position: relative;
-  top: 3px;
+  /* top: 0.2vw; */
+  width: 1.2vw;
+  height: 1.2vw;
 }
 
 .performanceTable {
@@ -63,40 +67,8 @@ img {
   margin: 0px auto 20px auto;
 }
 
-.practise {
-  color: rgba(255, 255, 255, 0.7);
-  margin-left: 100px;
-  border: 5px rgba(179, 141, 179, 0.637) solid;
-  padding: 20px;
-  background-color: rgba(128, 128, 128, 0.308);
-}
-
 .resetButton {
   background-color: rgb(209, 14, 14);
-}
-
-table {
-  color: rgba(255, 255, 255, 0.7);
-  margin-left: 100px;
-  border: 5px rgba(110, 27, 27, 0.63) solid;
-  padding: 20px;
-}
-
-table > tbody > tr > td:nth-child(3) {
-  text-align: center;
-}
-
-table > tbody > tr > td:nth-child(4) {
-  text-align: center;
-}
-
-td {
-  padding: 10px;
-}
-
-th {
-  padding: 10px;
-  border-bottom: 1px solid rgba(41, 200, 20, 0.63);
 }
 
 .tdClubs {
@@ -110,28 +82,15 @@ th {
   font-size: 1.25rem;
   width: 300px;
   margin: 20px auto 20px auto;
+  display: none;
 }
 
 .timer {
   font-weight: 700;
 }
 
-.summaryTable > thead > tr:first-child > th {
-  color: rgb(87, 169, 236);
-  font-size: 30px;
-  text-align: center;
-}
-
 .startGameButton {
   background-color: rgba(15, 209, 15, 0.575);
-}
-
-.tablesContainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  background-color: rgba(62, 92, 28, 0.178);
-  gap: 2rem;
 }
 
 .turnCounterContainer {
@@ -140,26 +99,12 @@ th {
   padding: 20px;
   margin: 0px auto 20px auto;
   text-align: center;
+  display: none;
 }
 
 .turnCounterNumber {
   font-size: 25px;
 }
-
-/* #youth {
-}
-
-#senior {
-}
-
-#national {
-}
-
-#management {
-}
-
-#hint {
-} */
 
 .rulesModalWindow {
   position: absolute;
@@ -198,4 +143,66 @@ th {
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 5;
+}
+
+table {
+  background-color: #eee2dc;
+  border: 5px rgb(72, 66, 151) solid;
+  padding: 5px;
+  font-size: 1vw;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: center;
+}
+
+table > tbody > tr {
+  border: 1px solid black;
+}
+
+.topHeader {
+  color: #123c69;
+  font-size: 2vw;
+}
+
+th {
+  padding: 10px;
+  border-bottom: 3px solid rgb(42, 128, 31);
+  color: #ac3b61;
+  /* color: #123c69; */
+  background-color: #e4d4cd;
+  font-size: 1.3vw;
+}
+
+span {
+  font-weight: normal;
+}
+
+.tablesContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+#senior {
+}
+
+#youth {
+}
+
+#national {
+}
+
+#management {
+}
+
+#hint {
+}
+
+.gameFunctionalityDiv {
+  background-color: lemonchiffon;
+  /* width: 40%; */
+  /* height: inherit; */
 }

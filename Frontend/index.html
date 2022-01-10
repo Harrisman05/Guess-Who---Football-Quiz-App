@@ -10,24 +10,22 @@
   </head>
   <body>
     <header class="gameHeader">
-      <h1>Football guessing game</h1>
+      <h1> Guess Who? Football Career Edition</h1>
     </header>
 
     <main>
-
-      <button class="rulesOpenModal">Click here for Rules</button>
      
       <div class="rulesModalWindow hidden"> <!-- hidden -->
           <button class="rulesCloseModal">&times;</button>
           
           <p>
-            <h2>Rules: Whose Career?</h2>
+            <h2>Rules: Guess Who? Football Career Edition</h2>
             <ul>
               <li>Once play button is clicked, a football career summary of a retired or active football player will be presented. The player has to guess the name of the player based on the summary data provided. 
 
               </li>
               <li> The player has 2 minutes⏰ to correctly guess the player's name</li>
-              <li> Using a hint will deduct your timer by 30 seconds</li>
+              <li></li>
               
             </ul>
             
@@ -36,8 +34,29 @@
       </div>
       <div class="rulesModalOverlay hidden"></div>
 
+     
+    
+
+      <div class="tablesContainer">
+
+        <table class="summaryTable hidden" id="senior"></table>
+
+        <table class="summaryTable hidden" id="youth"></table>
+  
+        <table class="summaryTable hidden" id="national"></table>
+  
+        <table class="summaryTable hidden" id="management"></table>
+  
+        <table class="summaryTable hidden" id="hint"></table>
+  
+      </div>
+
+      <div class="gameFunctionalityDiv">
+
+        <button class="rulesOpenModal">Click here for Rules</button>
+
       <button class="startGameButton"
-      type="submit"> Generate Player </button>
+      type="submit"> Start Game </button>
 
       <button class="resetButton">Reset Here</button>
 
@@ -52,21 +71,7 @@
       <p class="timerText">
         Your turn will end in: <span class="timer">02:00</span>
       </p>
-    
-      <div class="tablesContainer">
 
-        <table class="summaryTable hidden" id="youth"></table>
-
-        <table class="summaryTable hidden" id="senior"></table>
-  
-        <table class="summaryTable hidden" id="national"></table>
-  
-        <table class="summaryTable hidden" id="management"></table>
-  
-        <table class="summaryTable hidden" id="hint"></table>
-  
-      </div>
-      
       <button class="hintButton hidden" type="submit"> I need a hint... </button>
 
       <table class="performanceTable" id="finalTable"></table>
@@ -76,6 +81,10 @@
       <input type="text" class="playerGuessBox" spellcheck="false" placeholder="Type guess here...">
       <button type="submit" class="playerGuessSubmit"> Click here to submit guess </button>
       <!-- </form> -->
+
+    </div>
+
+
      
     </main>
   </body>
