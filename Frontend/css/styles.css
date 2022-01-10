@@ -41,6 +41,10 @@ img {
   top: 3px;
 }
 
+.performanceTable {
+  display: none;
+}
+
 .playerGuessBox {
   padding: 10px;
   width: 200px;

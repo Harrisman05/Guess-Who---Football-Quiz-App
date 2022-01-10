@@ -1,16 +1,22 @@
 ("use strict");
 
 /////////////////// Creating summary table node lists
-
+let arrCorrect = ["1 asdlfads", "2 asdgfasd", "3 sdfasdg"];
+let arrUser = [" 1 Correct", "2 Incorrect", "3 asdf"];
 const summaryTableNodeList = document.querySelectorAll(".summaryTable");
 const startGameButton = document.querySelector(".startGameButton");
 
 const youthTableHTML = document.querySelector("#youth");
+const seniorTableHTML = document.querySelector("#senior");
+const nationalTableHTML = document.querySelector("#national");
+const managementTableHTML = document.querySelector("#management");
+const performanceTableHTML = document.querySelector("#finalTable");
 
 ////////////////// targetting classes in the html markup
 
 const hintTableOnly = document.querySelector("#hint");
 const hintButton = document.querySelector(".hintButton");
+const timerText = document.querySelector(".timerText");
 
 const guessBox = document.querySelector(".playerGuessBox");
 const guessSubmit = document.querySelector(".playerGuessSubmit");
@@ -52,7 +58,7 @@ const startTimer = function () {
     if (time === 0) {
       clearInterval(timer);
       console.log("Turn has ended");
-      startGameButton.click();
+      guessSubmit.click();
     }
 
     // Decrease 1 second
@@ -60,7 +66,7 @@ const startTimer = function () {
   };
 
   // Set time to 2 minutes
-  let time = 10000;
+  let time = 3;
 
   // Call the timer every second
   tick();
@@ -152,17 +158,13 @@ startGameButton.addEventListener("click", function () {
 
   let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-  // random_player = "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
+  // random_player = "Shaun Wright-Phillips"; // "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
   console.log(random_player);
 
   //////////////////////////////Async from this point///////////////////////////////////////////////////////////
 
   import(`./summariesJS/${random_player}.js`).then((player) => {
-    ///////////// unhighlight generate new player
-
-    startGameButton.style.border = "none";
-
     ///////////// Start turn timer
 
     if (timer) clearInterval(timer); //check if there is a pre-existing timer, and delete if so
@@ -175,8 +177,27 @@ startGameButton.addEventListener("click", function () {
     /////////////////////////////////// Update counter
 
     turnCount++;
+    console.log(turnCount);
 
     turnCounterNumber.textContent = `${turnCount}/10`;
+
+    if (turnCount === 11) {
+      resetTimer();
+      turnCounterNumber.textContent = `10/10`;
+
+      youthTableHTML.style.display = "none";
+      seniorTableHTML.style.display = "none";
+      nationalTableHTML.style.display = "none";
+      managementTableHTML.style.display = "none";
+      hintTableOnly.style.display = "none";
+      performanceTableHTML.style.display = "table";
+
+      gameOverMessage.style.display = "block";
+      startGameButton.style.display = "none";
+      hintButton.style.display = "none";
+      guessBox.style.display = "none";
+      guessSubmit.style.display = "none";
+    }
 
     ///////////// Unhide summary tables
 
@@ -187,10 +208,13 @@ startGameButton.addEventListener("click", function () {
 
     // unhide input field
 
-    hintButton.style.display = "block";
-    guessSubmit.style.display = "block";
-    guessBox.style.display = "block";
-    hintTableOnly.style.display = "none"; // BUG unhide hint table for flexbox testing
+    if (turnCount !== 11) {
+      hintButton.style.display = "block";
+      guessSubmit.style.display = "block";
+      guessBox.style.display = "block";
+      // timerText.style.display = "none";
+      hintTableOnly.style.display = "none"; // BUG unhide hint table for flexbox testing
+    }
 
     ///////////////////////////////////////// Generate chosen player summary
 
@@ -241,7 +265,7 @@ startGameButton.addEventListener("click", function () {
           // filter the first section (youth career) into separate array
           let item = summaryArray.shift();
           youthPeriod.push(item);
-          console.log(youthPeriod);
+          // console.log(youthPeriod);
         }
       }
     };
@@ -560,6 +584,32 @@ startGameButton.addEventListener("click", function () {
         summaryTableHTML.innerHTML = summaryTable;
       }
     };
+
+    const generatePerformanceTable = function (correctGuess, userGuess) {
+      let performanceTable =
+        "<table><thead><tr><th> Correct Guess </th><th> Your Guess </th></tr></thead><tbody>";
+
+      for (let i = 0; i < correctGuess.length; i++) {
+        performanceTable +=
+          "<tr><td>" +
+          correctGuess[i] +
+          "</td><td>" +
+          userGuess[i] +
+          "</td></tr>";
+
+        performanceTable += "</tbody></table>";
+
+        let performanceTableHTML = document.getElementById("finalTable");
+
+        performanceTableHTML.innerHTML = performanceTable;
+      }
+    };
+
+    const performanceTable = generatePerformanceTable(
+      allCorrectPlayers,
+      allUserGuesses
+    );
+
     const youthTable = generateSummaryTables(youth, youthYears, youthClubs);
     const seniorTable = generateSummaryTables(
       senior,
@@ -596,20 +646,7 @@ startGameButton.addEventListener("click", function () {
     });
 
     resetButton.addEventListener("click", function () {
-      for (let i = 0; i < summaryTableNodeList.length; i++) {
-        summaryTableNodeList[i].classList.add("hidden");
-      }
-
-      resetTurnCount();
-      resetTimer();
-      wipeTables();
-
-      guessBox.style.display = "none";
-      guessSubmit.style.display = "none";
-      hintButton.style.display = "none";
-      hintTableOnly.style.display = "none";
-      startGameButton.style.display = "block";
-      gameOverMessage.style.display = "none";
+      location.reload();
     });
 
     guessSubmit.addEventListener(
@@ -623,11 +660,6 @@ startGameButton.addEventListener("click", function () {
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "");
 
-        // console.log(userPlayerGuess + " is the user's player");
-        // console.log(correctPlayerGuess + " is the correct player");
-        // console.log(
-        //   correctPlayerGuessNormalised + " is the normalised correct player"
-        // );
         console.log(correctPlayerGuess);
         allCorrectPlayers.push(correctPlayerGuess);
         console.log(allCorrectPlayers);
@@ -639,21 +671,15 @@ startGameButton.addEventListener("click", function () {
           userPlayerGuess === correctPlayerGuessNormalised
         ) {
           console.log("That is a correct guess");
-          startGameButton.click();
+          // startGameButton.click();
         } else {
           console.log("That is an incorrect guess");
-          startGameButton.click();
+          // startGameButton.click();
         }
         console.log("submit actioned");
 
-        if (turnCount === 10) {
-          gameOverMessage.style.display = "block";
-          startGameButton.style.display = "none";
-          hintButton.style.display = "none";
-          guessBox.style.display = "none";
-          guessSubmit.style.display = "none";
-        }
-        startGameButton.style.border = "5px solid red";
+        console.log(turnCount);
+        startGameButton.click();
       },
       { once: true } //maybe 3 hours to find this solution
     );

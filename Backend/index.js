@@ -22,11 +22,7 @@ playerDatabase = playerDatabase.filter(Boolean); // filter out empty strings
   for (let i = 0; i < 1; i++) {
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
-    await page.goto(
-      "https://en.wikipedia.org/wiki/" +
-        playerDatabase[128] +
-        "_(footballer,_born_1979)"
-    );
+    await page.goto("https://en.wikipedia.org/wiki/" + "Shaun_Wright-Phillips");
 
     const careerSummary = await page.evaluate(
       () =>
@@ -45,14 +41,13 @@ playerDatabase = playerDatabase.filter(Boolean); // filter out empty strings
 
     let rejoinedSummaryArr = summaryArr.join("\n");
     fs.appendFile(
-      `summariesDebugWikiNameError/${playerDatabase[128]}.txt`,
+      `summariesDebugWikiNameError/Shaun Wright Phillips.txt`,
       rejoinedSummaryArr,
       function (err) {
         if (err) throw err;
         console.log("Saved");
       }
     );
-
     await browser.close();
   }
 })();
