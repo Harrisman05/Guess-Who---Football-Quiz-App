@@ -158,7 +158,7 @@ startGameButton.addEventListener("click", function () {
 
   let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-  random_player = "Nolberto Solano";
+  // random_player = "Nicolas Anelka";
   // "Shaun Wright-Phillips"; // "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
   console.log(random_player);
@@ -212,6 +212,10 @@ startGameButton.addEventListener("click", function () {
         summaryTableNodeList[i].classList.remove("hidden");
       }
     }
+
+    // Force the caret to enter the input field so you can type inputs immediately
+
+    document.querySelector(".playerGuessBox").focus();
 
     ///////////////////////////////////////// Generate chosen player summary
 

@@ -38,30 +38,55 @@ img {
   margin-left: 0.5vw;
   position: relative;
   /* top: 0.2vw; */
-  width: 1.2vw;
-  height: 1.2vw;
+  width: 1.5vw;
+  height: 1.5vw;
+}
+
+input[type="text"] {
+  font-size: 4vw;
+}
+
+input:focus {
+  border: 0.5vw solid #00dd22;
+  outline: 0;
+  background-color: #b0eeba;
+}
+
+.playerGuessBox {
+  width: 50vw;
+  display: none;
+  margin: 0 auto 0 auto;
+  border: rgb(136, 136, 136) 0.5vw dotted;
+}
+
+input::placeholder {
+  color: rgba(77, 76, 76, 0.459);
 }
 
 .performanceTable {
   display: none;
 }
 
-.playerGuessBox {
-  padding: 10px;
-  width: 200px;
-  display: none;
-  margin: 0px auto 20px auto;
-  border: red 5px dotted;
-}
-
 .playerGuessSubmit {
   background-color: #1c89ff;
-  border-radius: 50px;
+  border-radius: 5vw;
   color: rgb(223, 223, 223);
   padding: 10px;
-  width: 200px;
+  width: 20vw;
   display: none;
-  margin: 0px auto 20px auto;
+  margin: 1vw auto 1vw 1vw;
+  font-size: 2vw;
+}
+
+.playerGuessSubmit:hover {
+  border: 0.5vw solid #dd3f00;
+  background-color: #8f4908;
+}
+
+.playerGuessSubmit:focus {
+  border: 0.5vw solid #dd3f00;
+  background-color: #8f4908;
+  outline: 0;
 }
 
 .resetButton {
@@ -128,13 +153,14 @@ img {
 
 table {
   background-color: #eee2dc;
-  border: 5px rgb(72, 66, 151) solid;
-  font-size: 0.9vw;
+  border: 0.4vw #0e3c42 solid;
+  font-size: 1.3vw;
   border-collapse: collapse;
+  margin: 1vw 0 1vw 0;
 }
 
 td {
-  padding: 0.2vw;
+  padding: 0.2vw 1.4vw 0.2vw 1.4vw;
   text-align: center;
   vertical-align: center;
 }
@@ -145,16 +171,16 @@ table > tbody > tr {
 
 .topHeader {
   color: #123c69;
-  font-size: 1.5vw;
+  font-size: 1.7vw;
 }
 
 th {
-  padding: 10px;
   border-bottom: 3px solid rgb(42, 128, 31);
   color: #ac3b61;
   /* color: #123c69; */
   background-color: #e4d4cd;
-  font-size: 1.1vw;
+  font-size: 1.2vw;
+  padding: 0.2vw;
 }
 
 span {
@@ -165,7 +191,7 @@ span {
   display: flex;
   background-color: rgb(147, 184, 226);
   justify-content: center;
-  gap: 1vw;
+  gap: 0.5vw;
   width: 80%;
 }
 
@@ -175,11 +201,16 @@ span {
 
 .hintButton {
   background-color: gold;
+  font-size: 1.5vw;
   align-self: center;
   margin: 0 0 0 6vw;
+  width: 8vw;
+  height: 8vw;
 }
 
 #senior {
+  align-self: center;
+  min-height: 30vh;
 }
 
 /* #youth {
@@ -193,12 +224,13 @@ span {
 
 .topContainer {
   display: flex;
+  min-height: 70vh;
 }
 
 .gameFunctionalityDiv {
   background-color: lemonchiffon;
-  /* width: 40%; */
-  /* height: 100vh; */
+  display: flex;
+  /* height: 10vh; */
 }
 
 .auxButtonsContainer {
@@ -210,11 +242,10 @@ span {
   gap: 4vh;
 }
 .rulesOpenModal {
-  margin-top: 3vh;
+  margin: 0 auto 1vh auto;
   background-color: #129cf8;
   color: white;
   text-align: center;
-  margin: auto;
   padding: 1.2vw;
   width: 18vw;
   font-size: 1.5vw;
@@ -225,18 +256,22 @@ span {
 }
 
 .turnCounterContainer {
-  background-color: aqua;
-  margin: auto;
+  background-color: rgb(126, 233, 105);
   text-align: center;
   display: none;
-  border-radius: 5vw;
   padding: 1.2vw;
-  width: 16vw;
-  font-size: 2vw;
+  font-size: 1.5vw;
+  width: 20%;
+  align-self: flex-start;
+}
+
+.guessRemainingText {
+  display: block;
 }
 
 .turnCounterNumber {
-  font-size: 1.5vw;
+  font-size: 2.5vw;
+  display: block;
 }
 
 .timerText {
@@ -244,8 +279,7 @@ span {
   color: white;
   text-align: center;
   display: none;
-  margin: auto;
-  margin-bottom: 1vh;
+  margin: 0 auto 1vh auto;
   border-radius: 5vw;
   padding: 1.2vw;
   width: 16vw;
