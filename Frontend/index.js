@@ -158,7 +158,7 @@ startGameButton.addEventListener("click", function () {
 
   let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-  // random_player = "Alan Shearer";
+  random_player = "Nolberto Solano";
   // "Shaun Wright-Phillips"; // "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
   console.log(random_player);
@@ -510,7 +510,7 @@ startGameButton.addEventListener("click", function () {
           break;
         case "senior":
           summaryTable =
-            "<table><thead><tr><th colspan='4' class='topHeader'> <span>⚽</span> Senior Career <span>⚽</span> </th></tr><tr><th> Years </th> <th> Senior Clubs </th> <th> Senior Apps </th> <th> Senior Goals </th> </tr></thead><tbody>";
+            "<table><thead><tr><th colspan='4' class='topHeader'> <span>⚽⚽⚽</span> Senior Career <span>⚽⚽⚽</span> </th></tr><tr><th> Years </th> <th> Senior Clubs </th> <th> Apps </th> <th> Goals </th> </tr></thead><tbody>";
           break;
         case "national":
           summaryTable =
@@ -526,10 +526,10 @@ startGameButton.addEventListener("click", function () {
 
           for (let i = 0; i < 4; i++) {
             let itemHeader = [
-              "Date of birth",
-              "Place of birth",
-              "Height",
-              "Position(s)",
+              "🥳Date of birth🎂",
+              "🏥Place of birth🌆",
+              "📏Height📏",
+              "🔢Position(s)🔢",
             ];
             summaryTable += "<tr><td>" + itemHeader[i] + "</td><td>" + hint[i];
 
@@ -609,7 +609,7 @@ startGameButton.addEventListener("click", function () {
       allUserGuesses
     );
 
-    const youthTable = generateSummaryTables(youth, youthYears, youthClubs);
+    // const youthTable = generateSummaryTables(youth, youthYears, youthClubs);
     const seniorTable = generateSummaryTables(
       senior,
       seniorYears,
@@ -617,18 +617,18 @@ startGameButton.addEventListener("click", function () {
       seniorApps,
       seniorGoals
     );
-    const nationalTable = generateSummaryTables(
-      national,
-      nationalYears,
-      nationalGroups,
-      nationalApps,
-      nationalGoals
-    );
-    const managementTable = generateSummaryTables(
-      management,
-      managementYears,
-      managementClubs
-    );
+    // const nationalTable = generateSummaryTables(
+    //   national,
+    //   nationalYears,
+    //   nationalGroups,
+    //   nationalApps,
+    //   nationalGoals
+    // );
+    // const managementTable = generateSummaryTables(
+    //   management,
+    //   managementYears,
+    //   managementClubs
+    // );
 
     //////////////////// BUG Remove after Flexbox testing
 

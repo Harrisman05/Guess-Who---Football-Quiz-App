@@ -6,8 +6,6 @@ Personal information
 Full name Gary Andrew Speed[1]
 Date of birth 8 September 1969[1]
 Place of birth Mancot, Flintshire, Wales
-Date of death 27 November 2011 (aged 42)
-Place of death Huntington, Cheshire, England
 Height 5 ft 10 in (1.78 m)[2]
 Position(s) Midfielder
 Youth career

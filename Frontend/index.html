@@ -34,31 +34,50 @@
       </div>
       <div class="rulesModalOverlay hidden"></div>
 
-     
+      <div class="topContainer">
+
+        <div class="auxButtonsContainer">
+
+          <button class="rulesOpenModal">📖<span class="gameRulesText">Game Rules</span>📖</button>
+          <button class="resetButton">🚫<span class="resetHereText">Reset Here</span>🚫</button>
+
+
+                <p class="timerText">
+                  ⏳ <span class="timer">02:00</span> ⏳
+      </p>
     
+  
+  
+        </div>
+      
+  
+        <div class="tablesContainer">
+  
+          <table class="summaryTable hidden" id="senior"></table>
 
-      <div class="tablesContainer">
+          <button class="hintButton hidden" type="submit"> I need a hint... </button>
+  
+          <table class="summaryTable hidden" id="youth"></table>
+    
+          <table class="summaryTable hidden" id="national"></table>
+    
+          <table class="summaryTable hidden" id="management"></table>
+    
+          <table class="summaryTable hidden" id="hint"></table>
+    
+        </div>
 
-        <table class="summaryTable hidden" id="senior"></table>
 
-        <table class="summaryTable hidden" id="youth"></table>
-  
-        <table class="summaryTable hidden" id="national"></table>
-  
-        <table class="summaryTable hidden" id="management"></table>
-  
-        <table class="summaryTable hidden" id="hint"></table>
-  
       </div>
+     
+ 
 
       <div class="gameFunctionalityDiv">
 
-        <button class="rulesOpenModal">Click here for Rules</button>
+        
 
       <button class="startGameButton"
       type="submit"> Start Game </button>
-
-      <button class="resetButton">Reset Here</button>
 
       <div class="turnCounterContainer">
 
@@ -66,13 +85,7 @@
 
         <div class="gameOverMessage"> Game Over, please press reset in order to start another game</div>
 
-      </div>
-
-      <p class="timerText">
-        Your turn will end in: <span class="timer">02:00</span>
-      </p>
-
-      <button class="hintButton hidden" type="submit"> I need a hint... </button>
+      </div>      
 
       <table class="performanceTable" id="finalTable"></table>
       

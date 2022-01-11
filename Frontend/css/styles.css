@@ -10,10 +10,10 @@ body {
 }
 
 button {
-  padding: 10px;
-  width: 200px;
+  padding: 0.2vw;
+  width: 8vw;
   display: block;
-  margin: 0px auto 20px auto;
+  margin: auto;
   cursor: pointer;
   font-size: 1.2vw;
 }
@@ -24,17 +24,14 @@ button {
 
 h1 {
   color: white;
-  width: 1800px;
   margin: auto;
-  margin-bottom: 50px;
+  margin-bottom: 1vh;
+  width: 60vw;
+  font-size: 3vw;
 }
 
 .hidden {
   display: none;
-}
-
-.hintButton {
-  background-color: gold;
 }
 
 img {
@@ -68,42 +65,26 @@ img {
 }
 
 .resetButton {
-  background-color: rgb(209, 14, 14);
+  background-color: #d82424;
+  width: 18vw;
+  font-size: 1.8vw;
+  padding: 1.2vw;
+  border: 0.1vw solid black;
+  text-align: center;
+  cursor: pointer;
+  color: #63d8f7;
+}
+
+.resetHereText {
+  font-weight: 700;
 }
 
 .tdClubs {
   text-align: center;
 }
 
-.timerText {
-  background-color: burlywood;
-  padding: 20px;
-  text-align: center;
-  font-size: 1.25rem;
-  width: 300px;
-  margin: 20px auto 20px auto;
-  display: none;
-}
-
-.timer {
-  font-weight: 700;
-}
-
 .startGameButton {
   background-color: rgba(15, 209, 15, 0.575);
-}
-
-.turnCounterContainer {
-  background-color: aqua;
-  width: 100px;
-  padding: 20px;
-  margin: 0px auto 20px auto;
-  text-align: center;
-  display: none;
-}
-
-.turnCounterNumber {
-  font-size: 25px;
 }
 
 .rulesModalWindow {
@@ -148,13 +129,12 @@ img {
 table {
   background-color: #eee2dc;
   border: 5px rgb(72, 66, 151) solid;
-  padding: 5px;
-  font-size: 1vw;
+  font-size: 0.9vw;
   border-collapse: collapse;
 }
 
 td {
-  padding: 10px;
+  padding: 0.2vw;
   text-align: center;
   vertical-align: center;
 }
@@ -165,7 +145,7 @@ table > tbody > tr {
 
 .topHeader {
   color: #123c69;
-  font-size: 2vw;
+  font-size: 1.5vw;
 }
 
 th {
@@ -174,7 +154,7 @@ th {
   color: #ac3b61;
   /* color: #123c69; */
   background-color: #e4d4cd;
-  font-size: 1.3vw;
+  font-size: 1.1vw;
 }
 
 span {
@@ -183,26 +163,95 @@ span {
 
 .tablesContainer {
   display: flex;
-  flex-direction: row;
+  background-color: rgb(147, 184, 226);
+  justify-content: center;
+  gap: 1vw;
+  width: 80%;
+}
+
+#hint {
+  align-self: center;
+}
+
+.hintButton {
+  background-color: gold;
+  align-self: center;
+  margin: 0 0 0 6vw;
 }
 
 #senior {
 }
 
-#youth {
+/* #youth {
 }
 
 #national {
 }
 
 #management {
-}
+} */
 
-#hint {
+.topContainer {
+  display: flex;
 }
 
 .gameFunctionalityDiv {
   background-color: lemonchiffon;
   /* width: 40%; */
-  /* height: inherit; */
+  /* height: 100vh; */
+}
+
+.auxButtonsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  background-color: rgb(226, 159, 231);
+  height: inherit;
+  gap: 4vh;
+}
+.rulesOpenModal {
+  margin-top: 3vh;
+  background-color: #129cf8;
+  color: white;
+  text-align: center;
+  margin: auto;
+  padding: 1.2vw;
+  width: 18vw;
+  font-size: 1.5vw;
+}
+
+.gameRulesText {
+  font-weight: 700;
+}
+
+.turnCounterContainer {
+  background-color: aqua;
+  margin: auto;
+  text-align: center;
+  display: none;
+  border-radius: 5vw;
+  padding: 1.2vw;
+  width: 16vw;
+  font-size: 2vw;
+}
+
+.turnCounterNumber {
+  font-size: 1.5vw;
+}
+
+.timerText {
+  background-color: #583434;
+  color: white;
+  text-align: center;
+  display: none;
+  margin: auto;
+  margin-bottom: 1vh;
+  border-radius: 5vw;
+  padding: 1.2vw;
+  width: 16vw;
+  font-size: 2vw;
+}
+
+.timer {
+  font-weight: 700;
 }
