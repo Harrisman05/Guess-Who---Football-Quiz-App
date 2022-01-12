@@ -1,8 +1,6 @@
 ("use strict");
 
 /////////////////// Creating summary table node lists
-let arrCorrect = ["1 asdlfads", "2 asdgfasd", "3 sdfasdg"];
-let arrUser = [" 1 Correct", "2 Incorrect", "3 asdf"];
 const summaryTableNodeList = document.querySelectorAll(".summaryTable");
 const startGameButton = document.querySelector(".startGameButton");
 
@@ -14,13 +12,14 @@ const performanceTableHTML = document.querySelector("#finalTable");
 
 ////////////////// targetting classes in the html markup
 
+const tablesContainer = document.querySelector(".tablesContainer");
 const hintTableOnly = document.querySelector("#hint");
 const hintButton = document.querySelector(".hintButton");
 const timerText = document.querySelector(".timerText");
 
 const guessBox = document.querySelector(".playerGuessBox");
 const guessSubmit = document.querySelector(".playerGuessSubmit");
-const formMakeGuess = document.querySelector(".formMakeGuess");
+const h1Title = document.querySelector(".gameHeader");
 
 const resetButton = document.querySelector(".resetButton");
 
@@ -158,7 +157,7 @@ startGameButton.addEventListener("click", function () {
 
   let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-  // random_player = "Nicolas Anelka";
+  // random_player = "Alan Wright";
   // "Shaun Wright-Phillips"; // "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
   console.log(random_player);
@@ -203,10 +202,15 @@ startGameButton.addEventListener("click", function () {
       hintButton.style.display = "block";
       guessSubmit.style.display = "block";
       guessBox.style.display = "block";
-      hintTableOnly.style.display = "none"; // BUG unhide hint table for flexbox testing
+      hintTableOnly.style.display = "none"; // BUG change to none after testing
       startGameButton.style.display = "none";
       timerText.style.display = "block";
       turnCounterContainer.style.display = "block";
+      resetButton.style.display = "block";
+      btnOpenModal.style.margin = "1vh auto 0 auto";
+      tablesContainer.style.flexDirection = "row";
+      h1Title.style.display = "none";
+
       for (let i = 0; i < summaryTableNodeList.length; i++) {
         // console.log(summaryTableNodeList);
         summaryTableNodeList[i].classList.remove("hidden");
@@ -634,18 +638,19 @@ startGameButton.addEventListener("click", function () {
     //   managementClubs
     // );
 
-    //////////////////// BUG Remove after Flexbox testing
+    ////////////////// BUG Remove after Flexbox testing
 
     // hintTableOnly.classList.remove("hidden");
     // const hintTable = generateSummaryTables(hint, [], [], [], [], hintItems);
 
-    /////////////////////// BUG
+    ///////////////////// BUG
 
     hintButton.addEventListener("click", function () {
       hintTableOnly.classList.remove("hidden");
       const hintTable = generateSummaryTables(hint, [], [], [], [], hintItems);
       hintButton.style.display = "none";
       hintTableOnly.style.display = "table";
+      document.querySelector(".playerGuessBox").focus();
     });
 
     resetButton.addEventListener("click", function () {

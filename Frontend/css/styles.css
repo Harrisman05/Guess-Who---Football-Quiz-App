@@ -3,7 +3,6 @@
 }
 
 body {
-  /* background-color: #121212; */
   background-color: #f1bfa9;
   font-size: 1.2vw;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -20,14 +19,14 @@ button {
 
 .gameOverMessage {
   display: none;
+  margin: auto;
+  font-size: 2vw;
 }
 
 h1 {
   color: white;
-  margin: auto;
-  margin-bottom: 1vh;
-  width: 60vw;
-  font-size: 3vw;
+  font-size: 4vw;
+  margin: 1vw auto 0 auto;
 }
 
 .hidden {
@@ -37,7 +36,7 @@ h1 {
 img {
   margin-left: 0.5vw;
   position: relative;
-  /* top: 0.2vw; */
+  top: 0.2vw;
   width: 1.5vw;
   height: 1.5vw;
 }
@@ -56,7 +55,7 @@ input:focus {
   width: 50vw;
   display: none;
   margin: 0 auto 0 auto;
-  border: rgb(136, 136, 136) 0.5vw dotted;
+  border: rgb(255, 0, 0) 0.5vw dotted;
 }
 
 input::placeholder {
@@ -65,13 +64,14 @@ input::placeholder {
 
 .performanceTable {
   display: none;
+  align-self: center;
 }
 
 .playerGuessSubmit {
   background-color: #1c89ff;
-  border-radius: 5vw;
-  color: rgb(223, 223, 223);
-  padding: 10px;
+  border-radius: 3vw;
+  color: rgb(255, 255, 255);
+  padding: 0.2vw;
   width: 20vw;
   display: none;
   margin: 1vw auto 1vw 1vw;
@@ -79,25 +79,29 @@ input::placeholder {
 }
 
 .playerGuessSubmit:hover {
-  border: 0.5vw solid #dd3f00;
-  background-color: #8f4908;
+  background-color: #00ddd2;
+  color: black;
 }
 
 .playerGuessSubmit:focus {
-  border: 0.5vw solid #dd3f00;
-  background-color: #8f4908;
-  outline: 0;
+  background-color: #00ddd2;
+  color: black;
 }
 
 .resetButton {
-  background-color: #d82424;
+  background-color: #ff9393;
   width: 18vw;
   font-size: 1.8vw;
   padding: 1.2vw;
-  border: 0.1vw solid black;
+  border: 0.5vw solid rgb(167, 17, 17);
   text-align: center;
   cursor: pointer;
-  color: #63d8f7;
+  color: #1b198e;
+  display: none;
+}
+
+.resetButton:hover {
+  background-color: crimson;
 }
 
 .resetHereText {
@@ -109,28 +113,35 @@ input::placeholder {
 }
 
 .startGameButton {
-  background-color: rgba(15, 209, 15, 0.575);
+  background-color: rgb(238, 152, 39);
+  width: 18vw;
+  height: 15vw;
+  font-size: 5vw;
+}
+
+.startGameButton:hover {
+  background-color: rgb(6, 158, 6);
 }
 
 .rulesModalWindow {
   position: absolute;
-  top: 50%;
+  top: 35vh;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 70%;
   background-color: white;
-  padding: 1rem;
-  border-radius: 5px;
+  padding: 3vw;
+  border-radius: 0.5vw;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
+  font-size: 1.5vw;
 }
 
 .rulesCloseModal {
   position: absolute;
-  top: 0.1rem;
-  right: 0.8rem;
-  font-size: 3rem;
-  /* color: #333; */
+  top: 0.1vw;
+  right: 0.8vw;
+  font-size: 3vw;
   color: rgb(189, 31, 31);
   cursor: pointer;
   border: none;
@@ -147,7 +158,7 @@ input::placeholder {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(0.5vw);
   z-index: 5;
 }
 
@@ -160,7 +171,7 @@ table {
 }
 
 td {
-  padding: 0.2vw 1.4vw 0.2vw 1.4vw;
+  padding: 0.2vw 1vw 0.2vw 1vw;
   text-align: center;
   vertical-align: center;
 }
@@ -189,6 +200,7 @@ span {
 
 .tablesContainer {
   display: flex;
+  flex-direction: column;
   background-color: rgb(147, 184, 226);
   justify-content: center;
   gap: 0.5vw;
@@ -201,26 +213,22 @@ span {
 
 .hintButton {
   background-color: gold;
-  font-size: 1.5vw;
+  font-size: 3vw;
   align-self: center;
   margin: 0 0 0 6vw;
   width: 8vw;
   height: 8vw;
+  font-weight: bold;
+}
+
+.hintButton:hover {
+  background-color: rgb(6, 158, 6);
 }
 
 #senior {
   align-self: center;
   min-height: 30vh;
 }
-
-/* #youth {
-}
-
-#national {
-}
-
-#management {
-} */
 
 .topContainer {
   display: flex;
@@ -230,7 +238,6 @@ span {
 .gameFunctionalityDiv {
   background-color: lemonchiffon;
   display: flex;
-  /* height: 10vh; */
 }
 
 .auxButtonsContainer {
@@ -242,13 +249,17 @@ span {
   gap: 4vh;
 }
 .rulesOpenModal {
-  margin: 0 auto 1vh auto;
-  background-color: #129cf8;
-  color: white;
+  background-color: #a7a9aa;
+  color: rgb(0, 0, 0);
   text-align: center;
   padding: 1.2vw;
   width: 18vw;
-  font-size: 1.5vw;
+  font-size: 1.7vw;
+  justify-content: center;
+}
+
+.rulesOpenModal:hover {
+  background-color: rgb(6, 158, 6);
 }
 
 .gameRulesText {
@@ -256,13 +267,12 @@ span {
 }
 
 .turnCounterContainer {
-  background-color: rgb(126, 233, 105);
+  background-color: rgb(255, 128, 82);
+  align-self: flex-start;
+  width: 20%;
   text-align: center;
   display: none;
-  padding: 1.2vw;
-  font-size: 1.5vw;
-  width: 20%;
-  align-self: flex-start;
+  font-size: 1.9vw;
 }
 
 .guessRemainingText {
