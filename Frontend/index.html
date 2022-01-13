@@ -9,99 +9,122 @@
     <script defer type="module" src="index.js"></script>
   </head>
   <body>
-
     <main>
-     
       <div class="rulesModalWindow hidden">
-          <button class="rulesCloseModal">&times;</button>
-          
-          <p>
-            <h2> Guess Who? Football Career Edition</h2>
-              Once play button is clicked, a football career summary of a retired or active football player will be presented. The player has to guess the name of the player based on the summary data provided.               
-              <h4>Rules Overview</h4>
-              <ul>
-                <li> You have 2 minutes⏰ to correctly guess the player's name </li>
-                <li> Use the (hint) button to help them make a guess </li>
-                <li> Game can be reset at any point using (button) </li>
-                <li> After 10 turns, the round is over </li>
+        <button class="rulesCloseModal">&times;</button>
 
-              </ul>
-
-              
-            
-            
-          </p>
-        </div>
+        <h2>Football Quiz Game: Guess Who?</h2>
+        <p>
+          When <span class="spanBold spanStartGame">Start Game</span> is
+          clicked, a career summary of a retired or active football player will
+          be presented. You have to guess the name of the footballer based on
+          the summary data provided.
+        </p>
+        <h4>Rules Overview</h4>
+        <ul>
+          <li>
+            You have 1 minute ⏳ to correctly guess the player's name each turn
+          </li>
+          <li>
+            Use the <span class="spanBold spanHint">HINT!</span> button if you
+            need help making a guess
+          </li>
+          <li>After 10 turns, the round will end</li>
+          <li>
+            Game can be reset at any point using
+            <span class="spanBold spanReset">🚫RESET HERE🚫</span>
+          </li>
+        </ul>
+        <h4>Criteria for submitting answers</h4>
+        <ul>
+          <li class="sublist">
+            Answers are
+            <span class="spanBold spanUnderline">case sensitive</span> and
+            <span class="spanBold spanUnderline">space sensitive</span>. For
+            example:
+          </li>
+          <ul class="answersRuleset">
+            <li>
+              ❌ <span class="spanBold">a</span>lan
+              <span class="spanBold">s</span>hearer ❌ >>> ✅
+              <span class="spanBold">A</span>lan
+              <span class="spanBold">S</span>hearer ✅
+            </li>
+            <li>
+              <pre>❌ Alan<span class="spanSpaceBad">       </span>Shearer ❌ >>> ✅ Alan<span class="spanSpaceGood"> </span>Shearer ✅</pre>
+            </li>
+          </ul>
+          <li class="sublist">
+            <span class="spanBold spanUnderline">Accents</span> can be
+            <span class="spanBold spanUnderline">omitted</span> when submitting
+            guesses. For example:
+          </li>
+          <ul class="answersRuleset">
+            <li>
+              Ga<span class="spanBold">ë</span>l Clichy >>> ✅ Ga<span
+                class="spanBold"
+                >e</span
+              >l Clichy ✅
+            </li>
+            <li>
+              <pre>Jussi J<span class="spanBold">ää</span>skel<span class="spanBold">ä</span>inen >>> ✅ Jussi J<span class="spanBold">aa</span>skel<span class="spanBold">a</span>inen ✅</pre>
+            </li>
+          </ul>
+        </ul>
       </div>
       <div class="rulesModalOverlay hidden"></div>
 
       <div class="topContainer">
-
         <div class="auxButtonsContainer">
+          <button class="rulesOpenModal">
+            📖<span class="gameRulesText">Game Rules</span>📖
+          </button>
+          <button class="resetButton">
+            🚫<span class="resetHereText">Reset Here</span>🚫
+          </button>
 
-          <button class="rulesOpenModal">📖<span class="gameRulesText">Game Rules</span>📖</button>
-          <button class="resetButton">🚫<span class="resetHereText">Reset Here</span>🚫</button>
-
-
-                <p class="timerText">
-                  ⏳ <span class="timer">02:00</span> ⏳
-      </p>
-    
-  
-  
+          <p class="timerText">⏳ <span class="timer">02:00</span> ⏳</p>
         </div>
-      
-  
+
         <div class="tablesContainer">
+          <h1 class="gameHeader">Football Quiz Game: Guess Who?</h1>
 
-          <h1 class="gameHeader"> Guess Who? Football Career Edition</h1>
+          <button class="startGameButton" type="submit">Start Game</button>
 
-          <button class="startGameButton"
-          type="submit"> Start Game </button>
-  
           <table class="summaryTable hidden" id="senior"></table>
 
-          <button class="hintButton hidden" type="submit"> Hint! </button>
-  
+          <button class="hintButton hidden" type="submit">Hint!</button>
+
           <table class="summaryTable hidden" id="youth"></table>
-    
+
           <table class="summaryTable hidden" id="national"></table>
-    
+
           <table class="summaryTable hidden" id="management"></table>
-    
+
           <table class="summaryTable hidden" id="hint"></table>
 
           <table class="performanceTable" id="finalTable"></table>
-    
         </div>
-
-
       </div>
-     
- 
 
       <div class="gameFunctionalityDiv">
+        <div class="turnCounterContainer">
+          <div class="guessRemainingText">Turns Remaining</div>
 
-        
+          <div class="turnCounterNumber">0/10</div>
+        </div>
 
-      <div class="turnCounterContainer">
-
-        <div class="guessRemainingText"> Turns Remaining </div>
-
-        <div class="turnCounterNumber">0/10</div>
-
-
-      </div>          
-
-      <input type="text" class="playerGuessBox" spellcheck="false" placeholder="Type guess here...">
-      <button type="submit" class="playerGuessSubmit"> Submit guess </button>
-      <!-- </form> -->
-      <div class="gameOverMessage"> Game Over, please press reset in order to start another game</div>
-
-    </div>
-
-
-     
+        <input
+          type="text"
+          class="playerGuessBox"
+          spellcheck="false"
+          placeholder="Type guess here..."
+        />
+        <button type="submit" class="playerGuessSubmit">Submit guess</button>
+        <div class="gameOverMessage">
+          Game Over! Please press reset here in order to start another game
+        </div>
+      </div>
     </main>
   </body>
 </html>

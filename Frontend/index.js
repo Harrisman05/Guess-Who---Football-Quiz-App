@@ -64,8 +64,8 @@ const startTimer = function () {
     time--;
   };
 
-  // Set time to 2 minutes
-  let time = 120;
+  // Set time to 1 minute
+  let time = 60;
 
   // Call the timer every second
   tick();
@@ -157,7 +157,7 @@ startGameButton.addEventListener("click", function () {
 
   let random_player = chooseRandomPlayer(playerDatabaseArray);
 
-  // random_player = "Alan Wright";
+  // random_player = "Petr Čech";
   // "Shaun Wright-Phillips"; // "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
   console.log(random_player);
@@ -202,7 +202,7 @@ startGameButton.addEventListener("click", function () {
       hintButton.style.display = "block";
       guessSubmit.style.display = "block";
       guessBox.style.display = "block";
-      hintTableOnly.style.display = "none"; // BUG change to none after testing
+      hintTableOnly.style.display = "none";
       startGameButton.style.display = "none";
       timerText.style.display = "block";
       turnCounterContainer.style.display = "block";
@@ -593,23 +593,44 @@ startGameButton.addEventListener("click", function () {
     };
 
     const generatePerformanceTable = function (correctGuess, userGuess) {
+      let numCorrectGuesses = 0;
+
       let performanceTable =
-        "<table><thead><tr><th> Correct Guess </th><th> Your Guess </th></tr></thead><tbody>";
+        "<table><thead><tr><th style='font-size: 1.6vw; padding: 1vw;'> Correct Guess </th><th style='font-size: 1.6vw; padding: 1vw;'> Your Guess </th></tr></thead><tbody>";
 
       for (let i = 0; i < correctGuess.length; i++) {
-        performanceTable +=
-          "<tr><td>" +
-          correctGuess[i] +
-          "</td><td>" +
-          userGuess[i] +
-          "</td></tr>";
+        let correctGuessNormalised = correctGuess[i]
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
 
-        performanceTable += "</tbody></table>";
-
-        let performanceTableHTML = document.getElementById("finalTable");
-
-        performanceTableHTML.innerHTML = performanceTable;
+        if (
+          userGuess[i] === correctGuess[i] ||
+          userGuess[i] === correctGuessNormalised
+        ) {
+          performanceTable +=
+            "<tr><td>" +
+            correctGuess[i] +
+            "</td><td style='color:green;'>" +
+            userGuess[i] +
+            "</td></tr>";
+          numCorrectGuesses++;
+        } else {
+          performanceTable +=
+            "<tr><td>" +
+            correctGuess[i] +
+            "</td><td style='color:red;'>" +
+            userGuess[i] +
+            "</td></tr>";
+        }
       }
+
+      performanceTable += `<tr><td colspan='2' style='font-weight: bold; font-size: 1.8vw; padding: 1vw;'> You got ${numCorrectGuesses}/10 correct! </td></tr>`;
+
+      performanceTable += "</tbody></table>";
+
+      let performanceTableHTML = document.getElementById("finalTable");
+
+      performanceTableHTML.innerHTML = performanceTable;
     };
 
     const performanceTable = generatePerformanceTable(
@@ -637,13 +658,6 @@ startGameButton.addEventListener("click", function () {
     //   managementYears,
     //   managementClubs
     // );
-
-    ////////////////// BUG Remove after Flexbox testing
-
-    // hintTableOnly.classList.remove("hidden");
-    // const hintTable = generateSummaryTables(hint, [], [], [], [], hintItems);
-
-    ///////////////////// BUG
 
     hintButton.addEventListener("click", function () {
       hintTableOnly.classList.remove("hidden");
@@ -674,22 +688,43 @@ startGameButton.addEventListener("click", function () {
         allUserGuesses.push(userPlayerGuess);
         console.log(allUserGuesses);
 
-        if (
-          userPlayerGuess === correctPlayerGuess ||
-          userPlayerGuess === correctPlayerGuessNormalised
-        ) {
-          console.log("That is a correct guess");
-          // startGameButton.click();
-        } else {
-          console.log("That is an incorrect guess");
-          // startGameButton.click();
-        }
-        console.log("submit actioned");
+        // if (
+        //   userPlayerGuess === correctPlayerGuess ||
+        //   userPlayerGuess === correctPlayerGuessNormalised
+        // ) {
+        //   console.log("That is a correct guess");
+        // } else {
+        //   console.log("That is an incorrect guess");
+        // }
+        // console.log("submit actioned");
 
-        console.log(turnCount);
+        // console.log(turnCount);
         startGameButton.click();
       },
       { once: true } //maybe 3 hours to find this solution
     );
+
+    // document.addEventListener(
+    //   "keydown",
+    //   function (event) {
+    //     if (event.key === "Enter" && turnCount != 11) {
+    //       let userPlayerGuess = guessBox.value;
+    //       guessBox.value = "";
+
+    //       let correctPlayerGuess = random_player;
+    //       let correctPlayerGuessNormalised = correctPlayerGuess
+    //         .normalize("NFD")
+    //         .replace(/[\u0300-\u036f]/g, "");
+
+    //       console.log(correctPlayerGuess);
+    //       allCorrectPlayers.push(correctPlayerGuess);
+    //       console.log(allCorrectPlayers);
+    //       allUserGuesses.push(userPlayerGuess);
+    //       console.log(allUserGuesses);
+    //       startGameButton.click();
+    //     }
+    //   },
+    //   { once: true }
+    // );
   });
 });

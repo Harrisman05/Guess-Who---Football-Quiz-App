@@ -8,6 +8,46 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+pre {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.spanBold {
+  font-weight: bold;
+}
+
+.spanUnderline {
+  text-decoration: underline;
+}
+
+.spanSpaceBad {
+  border-bottom: red solid 0.2vw;
+}
+
+.spanSpaceGood {
+  border-bottom: rgb(6, 158, 6) solid 0.2vw;
+}
+
+.spanHint {
+  background-color: gold;
+  border: 0.1vw solid black;
+}
+
+.spanReset {
+  background-color: #ff9393;
+  border: 0.25vw solid rgb(167, 17, 17);
+  color: #1b198e;
+}
+
+.spanStartGame {
+  background-color: rgb(10, 177, 10);
+  border: 0.1vw solid black;
+}
+
+.sublist {
+  padding-bottom: 2vw;
+}
+
 button {
   padding: 0.2vw;
   width: 8vw;
@@ -20,7 +60,8 @@ button {
 .gameOverMessage {
   display: none;
   margin: auto;
-  font-size: 2vw;
+  font-size: 2.2vw;
+  font-weight: bold;
 }
 
 h1 {
@@ -113,28 +154,28 @@ input::placeholder {
 }
 
 .startGameButton {
-  background-color: rgb(238, 152, 39);
+  background-color: rgb(10, 177, 10);
   width: 18vw;
   height: 15vw;
   font-size: 5vw;
 }
 
 .startGameButton:hover {
-  background-color: rgb(6, 158, 6);
+  background-color: rgb(12, 238, 12);
 }
 
 .rulesModalWindow {
   position: absolute;
-  top: 35vh;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
+  top: 10vh;
+  left: 10vw;
+  right: 10vw;
+  width: 80vw;
   background-color: white;
   padding: 3vw;
   border-radius: 0.5vw;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
-  font-size: 1.5vw;
+  font-size: 2vh;
 }
 
 .rulesCloseModal {
@@ -188,7 +229,6 @@ table > tbody > tr {
 th {
   border-bottom: 3px solid rgb(42, 128, 31);
   color: #ac3b61;
-  /* color: #123c69; */
   background-color: #e4d4cd;
   font-size: 1.2vw;
   padding: 0.2vw;
@@ -259,7 +299,7 @@ span {
 }
 
 .rulesOpenModal:hover {
-  background-color: rgb(6, 158, 6);
+  background-color: rgb(224, 135, 61);
 }
 
 .gameRulesText {

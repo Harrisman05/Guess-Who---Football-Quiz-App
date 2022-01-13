@@ -59,7 +59,7 @@ Roy Keane
 Theo Walcott
 David Unsworth
 Nicolas Anelka
-Thomas Sørensen
+Thomas Sorensen
 Ben Foster
 Chris Perry
 Trevor Sinclair
@@ -84,7 +84,7 @@ Joe Hart
 David de Gea
 Steed Malbranque
 Kenny Cunningham
-Hermann Hreiðarsson
+Hermann Hreioarsson
 James Beattie
 Shane Long
 Jason Dodd
@@ -116,7 +116,7 @@ Kyle Walker
 Edwin van der Sar
 Dion Dublin
 Ian Walker
-Gylfi Sigurðsson
+Gylfi Sigurdsson
 James Morrison
 Peter Schmeichel
 David Silva

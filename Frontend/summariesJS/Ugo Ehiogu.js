@@ -5,7 +5,6 @@ Personal information
 Full name Ugochuku Ehiogu[1]
 Date of birth 3 November 1972[1]
 Place of birth Hackney, London, England
-Date of death 21 April 2017 (aged 44)
 Height 6 ft 2 in (1.88 m)[1]
 Position(s) Centre back
 Youth career
