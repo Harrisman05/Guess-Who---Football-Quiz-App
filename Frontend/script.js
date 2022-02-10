@@ -572,7 +572,7 @@ startGameButton.addEventListener("click", function () {
           years[i] +
           "</td><td>" +
           clubs[i] +
-          `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''/>`;
+          `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''>`;
 
         if (Boolean(apps.length)) {
           summaryTable += "</td><td>" + apps[i];

@@ -167,9 +167,9 @@ input::placeholder {
 .rulesModalWindow {
   position: absolute;
   top: 10vh;
-  left: 10vw;
-  right: 10vw;
-  width: 80vw;
+  left: 20vw;
+  right: 20vw;
+  width: 60vw;
   background-color: white;
   padding: 3vw;
   border-radius: 0.5vw;
