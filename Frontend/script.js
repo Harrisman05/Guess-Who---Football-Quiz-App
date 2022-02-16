@@ -160,7 +160,28 @@ startGameButton.addEventListener("click", function () {
   // random_player = "Petr Čech";
   // "Shaun Wright-Phillips"; // "Hermann Hreiðarsson"; // "Thomas Sørensen"; // ("Kevin Campbell"); // "Jussi Jääskeläinen"; // "Alan Shearer"; // BUG // Ugo Ehiogu
 
-  console.log(random_player);
+  // let forcedGame = [
+  //   `Gareth Barry`,
+  //   `Ryan Giggs`,
+  //   `Frank Lampard`,
+  //   `Jamie Carragher`,
+  //   `David James`,
+  //   `James Milner`,
+  //   `Emile Heskey`,
+  //   `Mark Schwarzer`,
+  //   `Phil Neville`,
+  //   `Rio Ferdinand`,
+  // ];
+
+  // let random_player;
+
+  // if (turnCount == 10) {
+  //   random_player = chooseRandomPlayer(playerDatabaseArray);
+  // } else {
+  //   random_player = forcedGame[turnCount];
+  // }
+
+  // console.log(random_player);
 
   //////////////////////////////Async from this point///////////////////////////////////////////////////////////
 
@@ -572,7 +593,7 @@ startGameButton.addEventListener("click", function () {
           years[i] +
           "</td><td>" +
           clubs[i] +
-          `<img src='/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''>`;
+          `<img src='/Projects/footballCareerHistoryWikiWebScrap/Frontend/clubEmojis/${clubEmoji}.png' height='20px' width='20px' alt=''>`;
 
         if (Boolean(apps.length)) {
           summaryTable += "</td><td>" + apps[i];
